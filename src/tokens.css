@@ -1,0 +1,54 @@
+/* HX-01 KESTREL — design tokens.
+   Layout concept: a dark hangar lit by work lights; one fixed WebGL stage with an
+   engineering-drawing overlay (hairlines, mono annotations) snapped to an 8px grid.
+   Single committed dark look (a hangar has no light mode). */
+:root {
+  color-scheme: dark;
+
+  /* neutrals — cool bias toward the measurement cyan */
+  --bg:        #0A0C0F;   /* hangar dark */
+  --plate:     #11141A;   /* raised surface */
+  --plate-2:   #181C23;   /* hover / inset */
+  --line:      #262C35;   /* grid, inactive hairlines */
+  --faint:     #48515C;   /* tertiary text, construction lines */
+  --dim:       #8B939D;   /* secondary text */
+  --paper:     #E3E6E9;   /* drawing lines, primary text */
+
+  /* meaning-bound accents: each color is information, never decoration */
+  --cyan:      #5CC8EE;   /* ONLY measured / computed values, dimension lines */
+  --heat:      #FF6A1A;   /* ONLY where real heat exists (turbines, EGT). UI accent only:
+                             3D oxide heat-tint colors (straw/bronze/purple/blue) are material colors, not this token */
+  --pass:      #63D68F;   /* inspection passed / approved */
+  --caution:   #E8C14A;   /* torque stripe paint, caution markings */
+  --blueprint: #0E2748;   /* sheet-transition flash only */
+
+  --cyan-a:    rgba(92, 200, 238, 0.14);
+  --heat-a:    rgba(255, 106, 26, 0.18);
+
+  /* type */
+  --f-display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --f-body:    "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+
+  --t-micro: 9px;    /* drawing annotations */
+  --t-xs:    11px;   /* labels, HUD */
+  --t-s:     13px;   /* UI text */
+  --t-m:     16px;   /* body */
+  --t-l:     22px;   /* section lead */
+  --t-xl:    clamp(32px, 4.5vw, 64px);   /* large readouts (gauges, counters); sheet titles are small labels, not display text */
+  --t-hero:  clamp(56px, 9vw, 120px);    /* key measured value only (e.g. T/W 1.32) — no decorative titles */
+
+  --track-label: 0.14em;   /* uppercase labels */
+
+  /* geometry */
+  --u: 8px;            /* engineering grid unit */
+  --hair: 1px;
+  --gutter: max(16px, 3vw);
+
+  /* motion (see core.js KX.SPRINGS for physical springs) */
+  --dur-fast: 120ms;
+  --dur-med: 320ms;
+  --ease-mech: cubic-bezier(0.2, 0.0, 0.0, 1.0);   /* machine: fast start, hard settle */
+}
+
+body { background: var(--bg); color: var(--paper); font-family: var(--f-body); }
