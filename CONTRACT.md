@@ -21,7 +21,7 @@ src/audio/               audio.js(그래프·효과음), turbine-worklet.js(터�
 src/ui/                  loader, cursor, controls(모든 입력 컴포넌트), hud
 src/viz/                 2D 공학 도표·계기 (Canvas/SVG)
 src/styles/              tokens.css(디자인 토큰) + 나머지 CSS
-model/build.py           Blender 빌드 스크립트 → public/assets/*.glb
+model/build.py           Blender 5.2.1 빌드 스크립트 → public/assets/*.glb (`.venv-blender/bin/python model/build.py`)
 scripts/                 verify(기어·소켓·수치 대조), render-audio(오프라인 스펙트로그램), shoot(진행도별 스크린샷)
 renders/                 검토용 렌더 이미지
 PLAN.md, BLENDER_METHOD.md, CONTRACT.md
@@ -76,6 +76,6 @@ PLAN.md, BLENDER_METHOD.md, CONTRACT.md
   메모리 누수 방지 `dispose()`, 스크롤 정지 시 텍스트가 얼어붙지 않게 등장 애니메이션은 시간 기반.
 - 헤드리스 Chromium: python3 + playwright (브라우저 `/opt/pw-browsers`). WebGL은
   `args=["--use-gl=angle","--use-angle=swiftshader","--enable-unsafe-swiftshader"]`로 실행.
-- `/home/claude/kestrel`에서 `python3 -m http.server`로 서빙.
+- `/home/claude/opus-showreel2`에서 `python3 -m http.server`로 서빙.
 - 스크린샷은 Read 도구로 직접 보고, 콘솔 오류 0을 확인한다.
 - 임시 파일은 스크래치 폴더 `/tmp/claude-0/-home-claude/fca27d38-bc7b-57b1-8a25-9c8a9b961ea9/scratchpad`.
