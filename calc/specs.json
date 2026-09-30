@@ -1,123 +1,39 @@
 {
+ "spec_version": {
+  "v": "v2",
+  "unit": "",
+  "tag": "design",
+  "note": "2026-09-30: full armor, no flight, hydrogen fuel cell"
+ },
  "pilot_mass": {
   "v": 75.0,
   "unit": "kg",
   "tag": "design",
-  "note": ""
+  "note": "50th-percentile adult male"
  },
- "suit_height": {
-  "v": 1960,
-  "unit": "mm",
+ "pilot_height": {
+  "v": 1.75,
+  "unit": "m",
   "tag": "design",
-  "note": "standing, helmet crest to sole"
+  "note": "barefoot stature"
  },
- "suit_width": {
-  "v": 780,
-  "unit": "mm",
-  "tag": "design",
-  "note": "shoulder actuator to shoulder actuator"
- },
- "suit_depth": {
-  "v": 540,
-  "unit": "mm",
-  "tag": "design",
-  "note": "chest plate to back turbine"
- },
- "turbine_thrust_max": {
-  "v": 425.0,
-  "unit": "N",
+ "ref_guardian_xo_dof": {
+  "v": 24,
+  "unit": "",
   "tag": "spec",
-  "note": ""
+  "note": "Sarcos Guardian XO full-body exoskeleton"
  },
- "turbine_mass": {
-  "v": 4.01,
+ "ref_guardian_xo_lift": {
+  "v": 90,
   "unit": "kg",
   "tag": "spec",
-  "note": ""
+  "note": "Sarcos Guardian XO rated lift"
  },
- "turbine_rpm_idle": {
-  "v": 30000,
-  "unit": "rpm",
-  "tag": "spec",
-  "note": ""
- },
- "turbine_rpm_max": {
-  "v": 98000,
-  "unit": "rpm",
-  "tag": "spec",
-  "note": ""
- },
- "turbine_egt_min": {
-  "v": 480,
-  "unit": "degC",
-  "tag": "spec",
-  "note": ""
- },
- "turbine_egt_max": {
-  "v": 750,
-  "unit": "degC",
-  "tag": "spec",
-  "note": ""
- },
- "turbine_fuel_flow_max": {
-  "v": 1392,
-  "unit": "mL/min",
-  "tag": "spec",
-  "note": ""
- },
- "turbine_diameter": {
-  "v": 148.4,
-  "unit": "mm",
-  "tag": "spec",
-  "note": ""
- },
- "turbine_length": {
-  "v": 390,
-  "unit": "mm",
-  "tag": "spec",
-  "note": ""
- },
- "turbine_count": {
-  "v": 5,
-  "unit": "",
-  "tag": "design",
-  "note": "2 per arm + 1 back"
- },
- "fuel_density": {
-  "v": 0.8,
-  "unit": "kg/L",
-  "tag": "const",
-  "note": "Jet A-1 approx."
- },
- "fuel_volume": {
-  "v": 16.0,
-  "unit": "L",
-  "tag": "design",
-  "note": ""
- },
- "fuel_mass": {
-  "v": 12.8,
+ "ref_guardian_xo_mass": {
+  "v": 68,
   "unit": "kg",
-  "tag": "calc",
-  "note": ""
- },
- "compressor_blades": {
-  "v": 7,
-  "unit": "",
-  "tag": "design",
-  "note": "main blades, radial impeller"
- },
- "battery_energy": {
-  "v": 1.2,
-  "unit": "kWh",
-  "tag": "design",
-  "note": ""
- },
- "battery_pack_specific_energy": {
-  "v": 220,
-  "unit": "Wh/kg",
-  "tag": "design",
-  "note": ""
+  "tag": "spec",
+  "note": "Sarcos Guardian XO (no armor)"
  },
  "ref_m107_peak_torque": {
   "v": 360,
@@ -137,224 +53,1022 @@
   "tag": "calc",
   "note": ""
  },
+ "actuator_count": {
+  "v": 24,
+  "unit": "",
+  "tag": "calc",
+  "note": "L14 / M7 / S3"
+ },
  "actuator_classes": {
   "L": {
-   "count": 10,
+   "count": 14,
    "kg": 1.4,
-   "joints": "hip flex ×2, hip abd ×2, knee ×2, shoulder flex ×2, shoulder abd ×2",
+   "joints": "hip flex ×2, hip abd ×2, knee ×2, ankle pitch ×2, shoulder flex ×2, shoulder abd ×2, elbow ×2",
    "od_mm": 135,
-   "width_mm": 78,
-   "reducer": "hip/knee: 1-stage planetary 9:1 (QDD, backdrivable) · shoulder: strain-wave 100:1 (holds thrust load)"
+   "width_mm": 60,
+   "reducer": "legs: 1-stage planetary 9:1 (QDD: backdrivable, survives landing impacts) · arms: strain-wave 100:1 (holds a lifted load without motor heat)",
+   "peak_Nm": 247,
+   "density_Nm_per_kg": 176
   },
   "M": {
-   "count": 9,
+   "count": 7,
    "kg": 0.7,
-   "joints": "hip rot ×2, ankle pitch ×2, shoulder rot ×2, elbow ×2, trunk rot ×1",
+   "joints": "hip rot ×2, ankle roll ×2, shoulder rot ×2, trunk rot ×1",
    "od_mm": 104,
-   "width_mm": 62,
-   "reducer": "strain-wave 80:1"
+   "width_mm": 52,
+   "reducer": "strain-wave 80:1 (ankle roll behind an overload slip clutch)",
+   "peak_Nm": 70,
+   "density_Nm_per_kg": 100
   },
   "S": {
-   "count": 5,
+   "count": 3,
    "kg": 0.45,
-   "joints": "ankle roll ×2, wrist ×2, neck (helmet yaw support) ×1",
+   "joints": "wrist ×2, neck ×1",
    "od_mm": 80,
-   "width_mm": 50,
-   "reducer": "strain-wave 50:1"
+   "width_mm": 42,
+   "reducer": "strain-wave 50:1",
+   "peak_Nm": 18,
+   "density_Nm_per_kg": 40
   }
  },
- "mass_budget": [
-  {
-   "item": "Turbines ×5 (P400-class)",
-   "kg": 20.05
-  },
-  {
-   "item": "Turbine mounts, nozzles, heat shields",
-   "kg": 3.0
-  },
-  {
-   "item": "Fuel system hardware (pumps, valves, filters, lines)",
-   "kg": 1.8
-  },
-  {
-   "item": "Exo structure (Ti-6Al-4V / CFRP)",
-   "kg": 14.0
-  },
-  {
-   "item": "Joint actuators ×24 (L10 / M9 / S5)",
-   "kg": 22.55
-  },
-  {
-   "item": "Battery 1.2 kWh",
-   "kg": 5.45
-  },
-  {
-   "item": "Armor panels ×14 (CFRP + aramid)",
-   "kg": 6.0
-  },
-  {
-   "item": "Fasteners ≈400 (M3–M8, Ti / steel)",
-   "kg": 1.6
-  },
-  {
-   "item": "Electronics, sensors, harness",
-   "kg": 2.5
-  },
-  {
-   "item": "Pilot harness / soft goods",
-   "kg": 2.0
-  }
- ],
- "suit_dry_mass": {
-  "v": 78.95,
-  "unit": "kg",
-  "tag": "calc",
+ "foot_plate_thickness": {
+  "v": 0.02,
+  "unit": "m",
+  "tag": "design",
+  "note": "exo foot plate under the boot"
+ },
+ "boot_sole_thickness": {
+  "v": 0.025,
+  "unit": "m",
+  "tag": "design",
   "note": ""
  },
- "system_mass_no_fuel": {
-  "v": 153.95,
-  "unit": "kg",
+ "upper_arm_length": {
+  "v": 285,
+  "unit": "mm",
   "tag": "calc",
-  "note": ""
+  "note": "0.163 H"
  },
- "takeoff_mass": {
-  "v": 166.75,
-  "unit": "kg",
+ "forearm_length": {
+  "v": 256,
+  "unit": "mm",
   "tag": "calc",
-  "note": ""
+  "note": "0.146 H"
  },
- "takeoff_weight": {
-  "v": 1635.8,
-  "unit": "N",
+ "pilot_body_surface_area": {
+  "v": 1.903,
+  "unit": "m²",
   "tag": "calc",
-  "note": ""
+  "note": "Du Bois formula"
  },
- "thrust_total": {
-  "v": 2125.0,
-  "unit": "N",
-  "tag": "calc",
-  "note": ""
- },
- "thrust_to_weight": {
-  "v": 1.299,
-  "unit": "",
-  "tag": "calc",
-  "note": ""
- },
- "thrust_to_weight_min": {
-  "v": 1.25,
+ "armor_area_factor": {
+  "v": 1.7,
   "unit": "",
   "tag": "design",
-  "note": "attitude-control margin"
+  "note": "shell sits 6–10 cm outside the skin; limb area grows ~(r+t)/r"
  },
- "hover_throttle": {
-  "v": 77.0,
-  "unit": "%",
+ "armor_area": {
+  "v": 3.235,
+  "unit": "m²",
+  "tag": "calc",
+  "note": "estimate; the model manifest reports the real area"
+ },
+ "armor_cfrp_thickness": {
+  "v": 2.0,
+  "unit": "mm",
+  "tag": "design",
+  "note": "CFRP [0/±45/90]s skin, clear-coated (graphite look)"
+ },
+ "armor_aramid_thickness": {
+  "v": 1.0,
+  "unit": "mm",
+  "tag": "design",
+  "note": "aramid/epoxy inner liner: catches fragments"
+ },
+ "armor_areal_density_composite": {
+  "v": 4.48,
+  "unit": "kg/m²",
   "tag": "calc",
   "note": ""
  },
- "arm_thrust": {
-  "v": 850.0,
-  "unit": "N",
-  "tag": "calc",
-  "note": "load carried by exo shoulder, not pilot"
+ "armor_ti_panel_thickness": {
+  "v": 1.2,
+  "unit": "mm",
+  "tag": "design",
+  "note": "impact panels (knee / shoulder caps, knuckles, helmet brow) in Ti-6Al-4V: dent instead of shatter"
  },
- "tsfc": {
-  "v": 0.1572,
-  "unit": "kg/(N·h)",
+ "armor_areal_density_ti": {
+  "v": 5.316,
+  "unit": "kg/m²",
   "tag": "calc",
   "note": ""
  },
- "fuel_reserve": {
+ "armor_ti_area_fraction": {
   "v": 0.15,
   "unit": "",
   "tag": "design",
   "note": ""
  },
- "hover_endurance": {
-  "v": 157,
-  "unit": "s",
-  "tag": "calc",
-  "note": "constant-TSFC, 15% reserve"
- },
- "part_throttle_tsfc_penalty": {
-  "v": 1.14,
+ "armor_hardware_factor": {
+  "v": 0.15,
   "unit": "",
   "tag": "design",
-  "note": "TSFC worse at ~70% throttle"
+  "note": "latches, locating pins, edge trims"
  },
- "hover_endurance_conservative": {
-  "v": 138,
-  "unit": "s",
-  "tag": "calc",
-  "note": "hover_endurance / penalty"
- },
- "hover_fuel_flow_initial": {
-  "v": 4.29,
-  "unit": "kg/min",
+ "armor_mass": {
+  "v": 17.13,
+  "unit": "kg",
   "tag": "calc",
   "note": ""
  },
- "shaft_freq_max": {
-  "v": 1633.3,
-  "unit": "Hz",
-  "tag": "calc",
-  "note": ""
- },
- "blade_pass_freq_max": {
-  "v": 11433,
-  "unit": "Hz",
-  "tag": "calc",
-  "note": "inducer BPF: 7 main blades (splitters start downstream)"
- },
- "blade_pass_freq_idle": {
-  "v": 3500,
-  "unit": "Hz",
-  "tag": "calc",
-  "note": ""
- },
- "turbine_rows": {
-  "compressor_main": 7,
-  "compressor_splitter": 7,
-  "diffuser_vanes": 11,
-  "ngv_vanes": 13,
-  "turbine_blades": 23
- },
- "fuel_injectors": {
-  "v": 6,
+ "armor_panels_min": {
+  "v": 120,
   "unit": "",
   "tag": "design",
-  "note": "vaporiser sticks in annular combustor"
+  "note": "target; the real count comes from the model manifest"
  },
- "turbine_bearings": {
+ "internal_parts_min": {
+  "v": 450,
+  "unit": "",
+  "tag": "design",
+  "note": "target, fasteners excluded; real count from the manifest"
+ },
+ "fastener_count_target": {
+  "v": 700,
+  "unit": "",
+  "tag": "design",
+  "note": "≈, M2–M8; real count from the manifest"
+ },
+ "latch_count_target": {
+  "v": 150,
+  "unit": "",
+  "tag": "design",
+  "note": "≈, over-center latches holding the armor; real count from the manifest"
+ },
+ "armor_panel_gap": {
+  "v": 1.2,
+  "unit": "mm",
+  "tag": "design",
+  "note": "panel line: tolerance + thermal growth"
+ },
+ "armor_ballistic": {
+  "v": "none",
+  "unit": "",
+  "tag": "design",
+  "note": "impact / abrasion shell only — NOT ballistic protection"
+ },
+ "fc_power_continuous": {
+  "v": 2400,
+  "unit": "W",
+  "tag": "spec",
+  "note": "IE-SOAR 2.4-class air-cooled (open-cathode) PEM module"
+ },
+ "fc_module_mass": {
+  "v": 4.8,
+  "unit": "kg",
+  "tag": "spec",
+  "note": "IE-SOAR 2.4 datasheet"
+ },
+ "fc_ref_dimensions": {
+  "v": [
+   128,
+   442,
+   233
+  ],
+  "unit": "mm",
+  "tag": "spec",
+  "note": "IE-SOAR 2.4 module envelope"
+ },
+ "fc_ref_volume": {
+  "v": 13.2,
+  "unit": "L",
+  "tag": "calc",
+  "note": ""
+ },
+ "fc_module_dimensions": {
+  "v": [
+   200,
+   165,
+   400
+  ],
+  "unit": "mm",
+  "tag": "design",
+  "note": "x × y × z, repackaged upright along the spine"
+ },
+ "fc_module_volume": {
+  "v": 13.2,
+  "unit": "L",
+  "tag": "calc",
+  "note": ""
+ },
+ "fc_cells": {
+  "v": 96,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "fc_cell_voltage_rated": {
+  "v": 0.65,
+  "unit": "V",
+  "tag": "design",
+  "note": "at rated power"
+ },
+ "fc_stack_voltage_rated": {
+  "v": 62.4,
+  "unit": "V",
+  "tag": "calc",
+  "note": ""
+ },
+ "fc_current_rated": {
+  "v": 38.46,
+  "unit": "A",
+  "tag": "calc",
+  "note": ""
+ },
+ "fc_active_area": {
+  "v": 64,
+  "unit": "cm²",
+  "tag": "design",
+  "note": "8 × 8 cm per cell"
+ },
+ "fc_current_density": {
+  "v": 0.601,
+  "unit": "A/cm²",
+  "tag": "calc",
+  "note": "0.4–0.7 typical for air-cooled stacks"
+ },
+ "fc_plates": {
+  "v": 97,
+  "unit": "",
+  "tag": "calc",
+  "note": "95 bipolar + 2 terminal plates"
+ },
+ "fc_bipolar_plates": {
+  "v": 95,
+  "unit": "",
+  "tag": "calc",
+  "note": ""
+ },
+ "fc_cell_pitch": {
+  "v": 2.4,
+  "unit": "mm",
+  "tag": "design",
+  "note": "open-cathode plate incl. air channels"
+ },
+ "fc_stack_length": {
+  "v": 260.4,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "cells + 2 × 15 mm end plates"
+ },
+ "fc_plate_size": {
+  "v": [
+   100,
+   130
+  ],
+  "unit": "mm",
+  "tag": "design",
+  "note": ""
+ },
+ "fc_clamp_pressure": {
+  "v": 1.0,
+  "unit": "MPa",
+  "tag": "design",
+  "note": "on the gross plate area"
+ },
+ "fc_clamp_force": {
+  "v": 13000,
+  "unit": "N",
+  "tag": "calc",
+  "note": ""
+ },
+ "fc_tie_rods": {
+  "v": 8,
+  "unit": "",
+  "tag": "design",
+  "note": "M5 class 8.8 with disc-spring stacks"
+ },
+ "fc_tie_rod_force": {
+  "v": 1625,
+  "unit": "N",
+  "tag": "calc",
+  "note": ""
+ },
+ "faraday": {
+  "v": 96485.33,
+  "unit": "C/mol",
+  "tag": "const",
+  "note": ""
+ },
+ "h2_molar_mass": {
+  "v": 2.01588,
+  "unit": "g/mol",
+  "tag": "const",
+  "note": ""
+ },
+ "h2_lhv": {
+  "v": 33.33,
+  "unit": "kWh/kg",
+  "tag": "const",
+  "note": "120 MJ/kg"
+ },
+ "h2_lhv_cell_voltage": {
+  "v": 1.253,
+  "unit": "V",
+  "tag": "calc",
+  "note": "ΔH_LHV / 2F"
+ },
+ "fc_stack_efficiency_rated": {
+  "v": 0.519,
+  "unit": "",
+  "tag": "calc",
+  "note": "V_cell / 1.253 V"
+ },
+ "fc_h2_flow_rated": {
+  "v": 0.1389,
+  "unit": "kg/h",
+  "tag": "calc",
+  "note": "N·I / 2F"
+ },
+ "fc_system_efficiency": {
+  "v": 0.5,
+  "unit": "",
+  "tag": "design",
+  "note": "net, incl. blowers, controller, purge losses (LHV)"
+ },
+ "fc_purge_interval_rated": {
+  "v": 20,
+  "unit": "s",
+  "tag": "design",
+  "note": "anode purge valve; interval ∝ 1 / current"
+ },
+ "fc_blower_rpm_rated": {
+  "v": 12000,
+  "unit": "rpm",
+  "tag": "design",
+  "note": "2 axial blowers"
+ },
+ "fc_blower_blades": {
+  "v": 9,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "fc_blower_struts": {
+  "v": 4,
+  "unit": "",
+  "tag": "design",
+  "note": "blade and strut counts coprime: no tonal lock-in"
+ },
+ "fc_blower_shaft_freq": {
+  "v": 200.0,
+  "unit": "Hz",
+  "tag": "calc",
+  "note": ""
+ },
+ "fc_blower_bpf": {
+  "v": 1800,
+  "unit": "Hz",
+  "tag": "calc",
+  "note": "blade-pass frequency"
+ },
+ "fc_exhaust_temp": {
+  "v": 60,
+  "unit": "degC",
+  "tag": "design",
+  "note": "warm, humid stack air; leaves through the lower rear louvers"
+ },
+ "h2_pressure": {
+  "v": 350,
+  "unit": "bar",
+  "tag": "design",
+  "note": "nominal working pressure"
+ },
+ "h2_temperature": {
+  "v": 288.15,
+  "unit": "K",
+  "tag": "const",
+  "note": "15 °C reference"
+ },
+ "h2_z_350bar": {
+  "v": 1.227,
+  "unit": "",
+  "tag": "const",
+  "note": "compressibility factor, NIST approx."
+ },
+ "h2_density_350bar": {
+  "v": 24.0,
+  "unit": "g/L",
+  "tag": "calc",
+  "note": "ρ = pM / ZRT"
+ },
+ "h2_residual_pressure": {
+  "v": 15,
+  "unit": "bar",
+  "tag": "design",
+  "note": "regulator minimum inlet"
+ },
+ "h2_density_residual": {
+  "v": 1.251,
+  "unit": "g/L",
+  "tag": "calc",
+  "note": "Z ≈ 1.009"
+ },
+ "cyl_inner_radius": {
+  "v": 75,
+  "unit": "mm",
+  "tag": "design",
+  "note": ""
+ },
+ "cyl_length": {
+  "v": 400,
+  "unit": "mm",
+  "tag": "design",
+  "note": "overall incl. valve boss = power-pack height"
+ },
+ "cyl_liner_thickness": {
+  "v": 2.5,
+  "unit": "mm",
+  "tag": "design",
+  "note": "PA6 liner"
+ },
+ "cyl_burst_ratio": {
+  "v": 2.25,
+  "unit": "",
+  "tag": "const",
+  "note": "carbon-fibre cylinders, EC 79 value (conservative)"
+ },
+ "cyl_fibre_allowable": {
+  "v": 2000,
+  "unit": "MPa",
+  "tag": "design",
+  "note": "wound T700-class CFRP, fibre direction, incl. translation efficiency"
+ },
+ "cyl_helical_angle": {
+  "v": 11.5,
+  "unit": "deg",
+  "tag": "calc",
+  "note": "sin α = r_boss / r"
+ },
+ "cyl_cfrp_helical": {
+  "v": 1.54,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "netting theory"
+ },
+ "cyl_cfrp_hoop": {
+  "v": 2.89,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "netting theory"
+ },
+ "cyl_cfrp_thickness": {
+  "v": 4.87,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "+10 % dome build-up"
+ },
+ "cyl_outer_diameter": {
+  "v": 164.7,
+  "unit": "mm",
+  "tag": "calc",
+  "note": ""
+ },
+ "cyl_volume": {
+  "v": 5.75,
+  "unit": "L",
+  "tag": "calc",
+  "note": "internal; dome height 0.6 r"
+ },
+ "cyl_mass": {
+  "v": 2.48,
+  "unit": "kg",
+  "tag": "calc",
+  "note": "shell + 0.20 kg boss + 0.30 kg in-tank valve"
+ },
+ "cyl_count": {
   "v": 2,
   "unit": "",
-  "tag": "spec",
-  "note": "ceramic ball bearings, fuel/oil mist lubricated"
+  "tag": "design",
+  "note": "upright, either side of the fuel cell module"
  },
- "fuel_prefilter": {
-  "v": 50,
-  "unit": "µm",
-  "tag": "spec",
-  "note": "external pre-filter required by JetCat"
+ "h2_mass_full": {
+  "v": 0.276,
+  "unit": "kg",
+  "tag": "calc",
+  "note": ""
  },
- "turbine_part_count": {
-  "v": 40,
+ "h2_mass_usable": {
+  "v": 0.262,
+  "unit": "kg",
+  "tag": "calc",
+  "note": ""
+ },
+ "cyl_gravimetric": {
+  "v": 5.6,
+  "unit": "wt%",
+  "tag": "calc",
+  "note": "stored H2 / cylinder mass"
+ },
+ "h2_regulator_mass": {
+  "v": 0.315,
+  "unit": "kg",
+  "tag": "spec",
+  "note": "IE-SOAR pressure regulator"
+ },
+ "h2_regulator_out": {
+  "v": 0.5,
+  "unit": "bar(g)",
+  "tag": "design",
+  "note": "stack inlet"
+ },
+ "h2_lfl": {
+  "v": 4.0,
+  "unit": "%",
+  "tag": "const",
+  "note": "lower flammability limit in air"
+ },
+ "h2_alarm": {
+  "v": 1.0,
+  "unit": "%",
+  "tag": "design",
+  "note": "25 % LFL, sensor at the pack's highest point (H2 rises)"
+ },
+ "h2_shutdown": {
+  "v": 2.0,
+  "unit": "%",
+  "tag": "design",
+  "note": "50 % LFL: in-tank valves close"
+ },
+ "h2_swap_time": {
+  "v": 3,
+  "unit": "min",
+  "tag": "design",
+  "note": "quick-disconnect cylinder swap"
+ },
+ "batt_cell_voltage": {
+  "v": 3.6,
+  "unit": "V",
+  "tag": "design",
+  "note": "high-power 21700 class (4.5 Ah, 45 A, 70 g)"
+ },
+ "batt_cell_capacity": {
+  "v": 4.5,
+  "unit": "Ah",
+  "tag": "design",
+  "note": ""
+ },
+ "batt_cell_current_max": {
+  "v": 45,
+  "unit": "A",
+  "tag": "design",
+  "note": "10C continuous"
+ },
+ "batt_cell_mass": {
+  "v": 70,
+  "unit": "g",
+  "tag": "design",
+  "note": ""
+ },
+ "batt_config": {
+  "v": "16S2P",
   "unit": "",
   "tag": "design",
-  "note": "modelled parts per engine (approx.)"
+  "note": ""
  },
- "tank_part_count": {
-  "v": 15,
-  "unit": "",
-  "tag": "design",
-  "note": "modelled parts per fuel tank (approx.)"
- },
- "actuator_count": {
-  "v": 24,
+ "batt_cells": {
+  "v": 32,
   "unit": "",
   "tag": "calc",
-  "note": "L10 / M9 / S5"
+  "note": ""
+ },
+ "bus_voltage_nominal": {
+  "v": 57.6,
+  "unit": "V",
+  "tag": "calc",
+  "note": ""
+ },
+ "batt_energy": {
+  "v": 0.518,
+  "unit": "kWh",
+  "tag": "calc",
+  "note": ""
+ },
+ "batt_mass": {
+  "v": 2.87,
+  "unit": "kg",
+  "tag": "calc",
+  "note": "cells are 78 % of pack mass"
+ },
+ "batt_power_max": {
+  "v": 5184,
+  "unit": "W",
+  "tag": "calc",
+  "note": ""
+ },
+ "batt_pack_specific_energy": {
+  "v": 181,
+  "unit": "Wh/kg",
+  "tag": "calc",
+  "note": ""
+ },
+ "batt_pulse_charge_rate": {
+  "v": 5,
+  "unit": "C",
+  "tag": "design",
+  "note": "short (< 1 s) regen pulses"
+ },
+ "batt_regen_power_max": {
+  "v": 2592,
+  "unit": "W",
+  "tag": "calc",
+  "note": ""
+ },
+ "bus_power_peak": {
+  "v": 7584,
+  "unit": "W",
+  "tag": "calc",
+  "note": "fuel cell + battery"
+ },
+ "dcdc_efficiency": {
+  "v": 0.97,
+  "unit": "",
+  "tag": "design",
+  "note": "fuel cell -> 57.6 V bus"
+ },
+ "pilot_heat_design": {
+  "v": 400,
+  "unit": "W",
+  "tag": "design",
+  "note": "sustained work inside a closed suit (300–500 W)"
+ },
+ "ref_a7l_lcvg_removal": {
+  "v": 590,
+  "unit": "W",
+  "tag": "spec",
+  "note": "Apollo A7L liquid cooling garment, approx."
+ },
+ "lcvg_flow": {
+  "v": 1.8,
+  "unit": "L/min",
+  "tag": "design",
+  "note": ""
+ },
+ "lcvg_inlet_temp": {
+  "v": 18,
+  "unit": "degC",
+  "tag": "design",
+  "note": ""
+ },
+ "lcvg_delta_T": {
+  "v": 3.19,
+  "unit": "K",
+  "tag": "calc",
+  "note": "Q = ṁ c_p ΔT"
+ },
+ "lcvg_outlet_temp": {
+  "v": 21.2,
+  "unit": "degC",
+  "tag": "calc",
+  "note": ""
+ },
+ "lcvg_tube": {
+  "v": [
+   3.2,
+   80
+  ],
+  "unit": "mm, m",
+  "tag": "design",
+  "note": "tube OD, total length — quilted into the flight suit"
+ },
+ "chiller_cop": {
+  "v": 2.5,
+  "unit": "",
+  "tag": "design",
+  "note": "micro vapour-compression loop"
+ },
+ "chiller_cop_carnot": {
+  "v": 7.5,
+  "unit": "",
+  "tag": "calc",
+  "note": "T_evap 12 °C, T_cond 50 °C"
+ },
+ "chiller_second_law": {
+  "v": 0.33,
+  "unit": "",
+  "tag": "calc",
+  "note": "fraction of Carnot"
+ },
+ "chiller_power": {
+  "v": 160,
+  "unit": "W",
+  "tag": "calc",
+  "note": ""
+ },
+ "condenser_heat": {
+  "v": 560,
+  "unit": "W",
+  "tag": "calc",
+  "note": ""
+ },
+ "compressor_rpm": {
+  "v": 6000,
+  "unit": "rpm",
+  "tag": "design",
+  "note": "single rolling piston"
+ },
+ "compressor_freq": {
+  "v": 100.0,
+  "unit": "Hz",
+  "tag": "calc",
+  "note": ""
+ },
+ "pump_rpm": {
+  "v": 3600,
+  "unit": "rpm",
+  "tag": "design",
+  "note": ""
+ },
+ "pump_vanes": {
+  "v": 5,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "pump_bpf": {
+  "v": 300,
+  "unit": "Hz",
+  "tag": "calc",
+  "note": ""
+ },
+ "condenser_fan_rpm": {
+  "v": 4500,
+  "unit": "rpm",
+  "tag": "design",
+  "note": ""
+ },
+ "condenser_fan_blades": {
+  "v": 7,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "condenser_fan_struts": {
+  "v": 3,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "condenser_fan_bpf": {
+  "v": 525,
+  "unit": "Hz",
+  "tag": "calc",
+  "note": ""
+ },
+ "mission_profile": [
+  {
+   "mode": "idle",
+   "time_fraction": 0.4,
+   "actuation_W": 180
+  },
+  {
+   "mode": "walk",
+   "time_fraction": 0.5,
+   "actuation_W": 600
+  },
+  {
+   "mode": "heavy",
+   "time_fraction": 0.1,
+   "actuation_W": 2000
+  }
+ ],
+ "hud_compute_power": {
+  "v": 120,
+  "unit": "W",
+  "tag": "design",
+  "note": "4 cameras, 2 displays, sensors, compute"
+ },
+ "power_mission_average": {
+  "v": 852,
+  "unit": "W",
+  "tag": "calc",
+  "note": "actuation (profile) + chiller + HUD"
+ },
+ "fc_energy_delivered": {
+  "v": 4.228,
+  "unit": "kWh",
+  "tag": "calc",
+  "note": "usable H2 × LHV × η_system × η_DC-DC"
+ },
+ "endurance_mission": {
+  "v": 5.0,
+  "unit": "h",
+  "tag": "calc",
+  "note": "fuel cell only; battery kept as reserve"
+ },
+ "batt_reserve_fraction": {
+  "v": 0.5,
+  "unit": "",
+  "tag": "design",
+  "note": "kept for peaks and emergency"
+ },
+ "power_limp_home": {
+  "v": 460,
+  "unit": "W",
+  "tag": "calc",
+  "note": "idle actuation + chiller + HUD"
+ },
+ "reserve_time": {
+  "v": 34,
+  "unit": "min",
+  "tag": "calc",
+  "note": "battery reserve at limp-home power"
+ },
+ "h2_flow_mission": {
+  "v": 0.0527,
+  "unit": "kg/h",
+  "tag": "calc",
+  "note": ""
+ },
+ "water_output_mission": {
+  "v": 0.471,
+  "unit": "kg/h",
+  "tag": "calc",
+  "note": "the only exhaust is water vapour"
+ },
+ "fc_heat_mission": {
+  "v": 878,
+  "unit": "W",
+  "tag": "calc",
+  "note": "carried away by the stack air"
+ },
+ "fc_purge_interval_mission": {
+  "v": 55,
+  "unit": "s",
+  "tag": "calc",
+  "note": "≈ ∝ 1 / load"
+ },
+ "batt_only_specific_energy": {
+  "v": 200,
+  "unit": "Wh/kg",
+  "tag": "design",
+  "note": "energy-type pack, for the comparison only"
+ },
+ "batt_only_dod": {
+  "v": 0.9,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "batt_only_mass": {
+  "v": 23.5,
+  "unit": "kg",
+  "tag": "calc",
+  "note": "same delivered energy, battery only"
+ },
+ "fc_system_mass": {
+  "v": 14.5,
+  "unit": "kg",
+  "tag": "calc",
+  "note": "module, regulator, lines, DC-DC, buffer battery, cylinders, H2"
+ },
+ "fc_saving_vs_battery": {
+  "v": 9.0,
+  "unit": "kg",
+  "tag": "calc",
+  "note": ""
+ },
+ "fc_crossover_energy": {
+  "v": 2.15,
+  "unit": "kWh",
+  "tag": "calc",
+  "note": "above this the fuel-cell system is lighter than batteries"
+ },
+ "fc_crossover_time": {
+  "v": 2.5,
+  "unit": "h",
+  "tag": "calc",
+  "note": "at the mission-average power"
+ },
+ "gauntlet_mechanism_mass": {
+  "v": 0.9,
+  "unit": "kg",
+  "tag": "design",
+  "note": "per hand: finger linkage + grip-lock clutch"
+ },
+ "ankle_rod_diameter": {
+  "v": 12,
+  "unit": "mm",
+  "tag": "design",
+  "note": "17-4PH H900, hard-chrome"
+ },
+ "ankle_rod_length": {
+  "v": 288,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "parallelogram: actuator axis -> ankle axis"
+ },
+ "mass_budget": [
+  {
+   "item": "Joint actuators ×24 (L14 / M7 / S3)",
+   "kg": 25.85
+  },
+  {
+   "item": "Exo frame: Ti-6Al-4V links & clevises, CFRP spine & pelvis",
+   "kg": 14.0
+  },
+  {
+   "item": "Waist turret ring (thin-section bearing + ring gear)",
+   "kg": 1.4
+  },
+  {
+   "item": "Collar ring (helmet yaw bearing + ring gear)",
+   "kg": 0.45
+  },
+  {
+   "item": "Armor panels 120+ (CFRP/aramid, Ti impact panels, latches)",
+   "kg": 17.13
+  },
+  {
+   "item": "Helmet sensor module (4 cameras, 2 displays, IMU, ANC)",
+   "kg": 1.4
+  },
+  {
+   "item": "Fuel cell module (IE-SOAR 2.4-class)",
+   "kg": 4.8
+  },
+  {
+   "item": "H2 regulator, lines, valves, sensors",
+   "kg": 0.72
+  },
+  {
+   "item": "H2 cylinders ×2 (type IV, 350 bar)",
+   "kg": 4.96
+  },
+  {
+   "item": "Hydrogen (full)",
+   "kg": 0.28
+  },
+  {
+   "item": "Buffer battery 16S2P",
+   "kg": 2.87
+  },
+  {
+   "item": "Power electronics (DC-DC, BMS, bus bars)",
+   "kg": 0.9
+  },
+  {
+   "item": "Thermal: cooling garment + chiller + coolant",
+   "kg": 4.2
+  },
+  {
+   "item": "Knee dampers ×2 (semi-active hydraulic)",
+   "kg": 1.2
+  },
+  {
+   "item": "Ankle push-rod linkages ×2",
+   "kg": 0.87
+  },
+  {
+   "item": "Gauntlet finger mechanisms ×2",
+   "kg": 1.8
+  },
+  {
+   "item": "Fasteners ≈700 (M2–M8, Ti / steel)",
+   "kg": 2.1
+  },
+  {
+   "item": "Electronics, sensors, cable harness",
+   "kg": 3.0
+  },
+  {
+   "item": "Pilot harness, soft goods",
+   "kg": 2.0
+  }
+ ],
+ "suit_mass": {
+  "v": 89.9,
+  "unit": "kg",
+  "tag": "calc",
+  "note": "fuelled, without pilot"
+ },
+ "system_mass": {
+  "v": 164.9,
+  "unit": "kg",
+  "tag": "calc",
+  "note": "suit + pilot"
+ },
+ "knee_torque_design": {
+  "v": 247,
+  "unit": "N·m",
+  "tag": "calc",
+  "note": "1.5 N·m/kg × system mass (stairs, deep squat)"
+ },
+ "L_torque_density": {
+  "v": 176,
+  "unit": "N·m/kg",
+  "tag": "calc",
+  "note": "peak; below Unitree M107 189 N·m/kg"
  },
  "planetary_sun_teeth": {
   "v": 12,
@@ -384,7 +1098,7 @@
   "v": 9.0,
   "unit": "",
   "tag": "calc",
-  "note": "ring fixed, sun in, carrier out; hip & knee (L class, QDD)"
+  "note": "ring fixed, sun in, carrier out"
  },
  "planetary_assembly_check": {
   "v": 36,
@@ -446,20 +1160,8 @@
   "tag": "calc",
   "note": "must equal sun–planet distance"
  },
- "knee_torque_design": {
-  "v": 231,
-  "unit": "N·m",
-  "tag": "calc",
-  "note": "1.5 N·m/kg × system mass"
- },
- "L_torque_density": {
-  "v": 165,
-  "unit": "N·m/kg",
-  "tag": "calc",
-  "note": "peak; below Unitree M107 189 N·m/kg"
- },
  "knee_motor_torque_peak": {
-  "v": 25.7,
+  "v": 27.4,
   "unit": "N·m",
   "tag": "calc",
   "note": ""
@@ -471,16 +1173,16 @@
   "note": ""
  },
  "sun_tangential_force": {
-  "v": 1428,
+  "v": 1525,
   "unit": "N",
   "tag": "calc",
   "note": "per planet mesh"
  },
  "sun_bending_stress": {
-  "v": 291,
+  "v": 311,
   "unit": "MPa",
   "tag": "calc",
-  "note": "Lewis, simplified"
+  "note": "Lewis, simplified; x = +0.3 makes the real root thicker"
  },
  "gear_bending_allow": {
   "v": 500,
@@ -489,7 +1191,7 @@
   "note": "case-hardened 18CrNiMo7-6, approx."
  },
  "gear_FoS": {
-  "v": 1.72,
+  "v": 1.61,
   "unit": "",
   "tag": "calc",
   "note": ""
@@ -522,7 +1224,7 @@
   "v": 100,
   "unit": "",
   "tag": "calc",
-  "note": "Zf/(Zc−Zf); shoulders (L class, holding load)"
+  "note": "Zf/(Zc−Zf); shoulders & elbows (hold loads)"
  },
  "harmonic_module": {
   "v": 0.4,
@@ -534,7 +1236,7 @@
   "v": 80.0,
   "unit": "mm",
   "tag": "calc",
-  "note": "pitch diameter"
+  "note": "pitch diameter (size-32 class)"
  },
  "harmonic_circular_pd": {
   "v": 80.8,
@@ -548,29 +1250,155 @@
   "tag": "calc",
   "note": "wave generator: w0 = m(Zc−Zf)/2"
  },
- "arm_steer_angle": {
-  "v": 15,
-  "unit": "deg",
+ "elbow_velocity_typ": {
+  "v": 3.0,
+  "unit": "rad/s",
   "tag": "design",
-  "note": "max thrust-vector steering by arm angle"
+  "note": "brisk arm motion"
  },
- "shoulder_to_thrust_line": {
-  "v": 0.45,
-  "unit": "m",
+ "harmonic_vibration_freq": {
+  "v": 95.5,
+  "unit": "Hz",
+  "tag": "calc",
+  "note": "2 × wave-generator rotation (two lobes)"
+ },
+ "ankle_crank_radius": {
+  "v": 60,
+  "unit": "mm",
   "tag": "design",
-  "note": "shoulder GH centre to arm-pod thrust centre"
+  "note": "both cranks equal -> 1:1"
  },
- "shoulder_steer_moment": {
-  "v": 99,
+ "ankle_rod_force": {
+  "v": 4117,
+  "unit": "N",
+  "tag": "calc",
+  "note": "L-class peak / crank"
+ },
+ "ankle_rod_buckling_load": {
+  "v": 23793,
+  "unit": "N",
+  "tag": "calc",
+  "note": "Euler, pinned–pinned, E 197 GPa"
+ },
+ "ankle_rod_buckling_FoS": {
+  "v": 5.78,
+  "unit": "",
+  "tag": "calc",
+  "note": ""
+ },
+ "ankle_rod_stress": {
+  "v": 36,
+  "unit": "MPa",
+  "tag": "calc",
+  "note": ""
+ },
+ "leg_inertia_saving": {
+  "v": 0.565,
+  "unit": "kg·m²",
+  "tag": "calc",
+  "note": "about the hip, point mass: ankle actuator moved up to the calf"
+ },
+ "waist_ring_teeth": {
+  "v": 170,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "waist_pinion_teeth": {
+  "v": 17,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "waist_ring_module": {
+  "v": 2.0,
+  "unit": "mm",
+  "tag": "design",
+  "note": ""
+ },
+ "waist_ring_pd": {
+  "v": 340.0,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "pitch diameter"
+ },
+ "waist_ratio": {
+  "v": 10.0,
+  "unit": "",
+  "tag": "calc",
+  "note": ""
+ },
+ "waist_pinion_shift": {
+  "v": 0.1,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "waist_centre_distance": {
+  "v": 187.0,
+  "unit": "mm",
+  "tag": "calc",
+  "note": ""
+ },
+ "collar_ring_teeth": {
+  "v": 96,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "collar_pinion_teeth": {
+  "v": 12,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "collar_ring_module": {
+  "v": 2.25,
+  "unit": "mm",
+  "tag": "design",
+  "note": ""
+ },
+ "collar_ring_pd": {
+  "v": 216.0,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "pitch diameter"
+ },
+ "collar_ratio": {
+  "v": 8.0,
+  "unit": "",
+  "tag": "calc",
+  "note": ""
+ },
+ "collar_pinion_shift": {
+  "v": 0.3,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "collar_centre_distance": {
+  "v": 121.5,
+  "unit": "mm",
+  "tag": "calc",
+  "note": ""
+ },
+ "waist_ring_torque": {
+  "v": 700,
   "unit": "N·m",
   "tag": "calc",
-  "note": "arm thrust × lever × sin(steer); must stay below L-class peak"
+  "note": "M-class peak × ring ratio"
+ },
+ "collar_ring_torque": {
+  "v": 144,
+  "unit": "N·m",
+  "tag": "calc",
+  "note": "S-class peak × ring ratio"
  },
  "encoder_bits": {
   "v": 17,
   "unit": "bit",
   "tag": "design",
-  "note": "motor-side and output-side (dual encoder)"
+  "note": "motor side and output side (dual encoder)"
  },
  "encoder_cpr": {
   "v": 131072,
@@ -606,7 +1434,7 @@
   "v": 72,
   "unit": "",
   "tag": "design",
-  "note": ""
+  "note": "torque wrench"
  },
  "ratchet_step": {
   "v": 5.0,
@@ -632,23 +1460,293 @@
   "tag": "design",
   "note": ""
  },
- "loop_flight": {
-  "v": 400,
-  "unit": "Hz",
+ "lift_mass": {
+  "v": 90,
+  "unit": "kg",
   "tag": "design",
-  "note": ""
+  "note": "cf. Sarcos Guardian XO 90 kg"
  },
- "walking_power": {
-  "v": 400,
-  "unit": "W",
+ "lift_lever": {
+  "v": 0.3305,
+  "unit": "m",
+  "tag": "calc",
+  "note": "elbow axis -> grip centre (0.146 H + 75 mm)"
+ },
+ "lift_elbow_moment": {
+  "v": 145.9,
+  "unit": "N·m",
+  "tag": "calc",
+  "note": "per arm, elbow at 90°"
+ },
+ "lift_elbow_fraction": {
+  "v": 0.59,
+  "unit": "",
+  "tag": "calc",
+  "note": "of the L-class peak"
+ },
+ "forearm_assembly_mass": {
+  "v": 3.5,
+  "unit": "kg",
   "tag": "design",
-  "note": "cf. Guardian XO ~500 W peak"
+  "note": "forearm armor + wrist actuator + gauntlet"
  },
- "walking_endurance": {
-  "v": 3.0,
-  "unit": "h",
+ "lift_shoulder_moment": {
+  "v": 151.0,
+  "unit": "N·m",
+  "tag": "calc",
+  "note": "forearm level, its CoM 0.15 m out"
+ },
+ "grip_lock": {
+  "v": "ratchet clutch per finger group",
+  "unit": "",
+  "tag": "design",
+  "note": "the gauntlet holds the load, not the pilot's fingers"
+ },
+ "drop_height": {
+  "v": 1.5,
+  "unit": "m",
+  "tag": "design",
+  "note": "design-limit drop with the dampers armed"
+ },
+ "impact_velocity": {
+  "v": 5.42,
+  "unit": "m/s",
   "tag": "calc",
   "note": ""
+ },
+ "landing_stroke": {
+  "v": 0.5,
+  "unit": "m",
+  "tag": "design",
+  "note": "CoM travel: ankle + knee + hip flexion into a deep squat"
+ },
+ "landing_load_factor": {
+  "v": 4.0,
+  "unit": "g",
+  "tag": "calc",
+  "note": "ground force / weight = 1 + h/s"
+ },
+ "landing_decel": {
+  "v": 3.0,
+  "unit": "g",
+  "tag": "calc",
+  "note": "net deceleration"
+ },
+ "landing_force": {
+  "v": 6472,
+  "unit": "N",
+  "tag": "calc",
+  "note": "total ground reaction"
+ },
+ "landing_force_per_leg": {
+  "v": 3236,
+  "unit": "N",
+  "tag": "calc",
+  "note": "symmetric landing"
+ },
+ "landing_time": {
+  "v": 0.184,
+  "unit": "s",
+  "tag": "calc",
+  "note": "constant deceleration"
+ },
+ "knee_lever_landing": {
+  "v": 0.18,
+  "unit": "m",
+  "tag": "design",
+  "note": "knee axis to the ground-reaction line, deep squat"
+ },
+ "knee_moment_landing": {
+  "v": 582,
+  "unit": "N·m",
+  "tag": "calc",
+  "note": ""
+ },
+ "damper_torque": {
+  "v": 400,
+  "unit": "N·m",
+  "tag": "design",
+  "note": "semi-active hydraulic, parallel to the knee actuator"
+ },
+ "knee_capacity_landing": {
+  "v": 647,
+  "unit": "N·m",
+  "tag": "calc",
+  "note": "actuator peak + damper"
+ },
+ "knee_landing_margin": {
+  "v": 1.11,
+  "unit": "",
+  "tag": "calc",
+  "note": ""
+ },
+ "damper_lever": {
+  "v": 45,
+  "unit": "mm",
+  "tag": "design",
+  "note": ""
+ },
+ "damper_force": {
+  "v": 8889,
+  "unit": "N",
+  "tag": "calc",
+  "note": ""
+ },
+ "damper_bore": {
+  "v": 22,
+  "unit": "mm",
+  "tag": "design",
+  "note": ""
+ },
+ "damper_pressure": {
+  "v": 234,
+  "unit": "bar",
+  "tag": "calc",
+  "note": ""
+ },
+ "damper_pressure_rated": {
+  "v": 400,
+  "unit": "bar",
+  "tag": "design",
+  "note": ""
+ },
+ "damper_stroke": {
+  "v": 47,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "60° knee flexion during the landing"
+ },
+ "landing_energy": {
+  "v": 3236,
+  "unit": "J",
+  "tag": "calc",
+  "note": "= m g (h + s) = ground force × stroke"
+ },
+ "landing_knee_share": {
+  "v": 0.6,
+  "unit": "",
+  "tag": "design",
+  "note": "knee-dominant soft landing"
+ },
+ "damper_energy": {
+  "v": 600,
+  "unit": "J",
+  "tag": "calc",
+  "note": "per knee damper"
+ },
+ "damper_oil_mass": {
+  "v": 60,
+  "unit": "g",
+  "tag": "design",
+  "note": ""
+ },
+ "damper_oil_temp_rise": {
+  "v": 5.3,
+  "unit": "K",
+  "tag": "calc",
+  "note": "per landing, oil only (1.9 kJ/kg·K)"
+ },
+ "landing_actuator_energy": {
+  "v": 2035,
+  "unit": "J",
+  "tag": "calc",
+  "note": "absorbed by the joint actuators"
+ },
+ "landing_regen": {
+  "v": 478,
+  "unit": "J",
+  "tag": "calc",
+  "note": "limited by the battery's pulse-charge power, not by the motors"
+ },
+ "landing_brake_heat": {
+  "v": 1558,
+  "unit": "J",
+  "tag": "calc",
+  "note": "brake resistors + windings"
+ },
+ "free_fall_time": {
+  "v": 0.553,
+  "unit": "s",
+  "tag": "calc",
+  "note": ""
+ },
+ "free_fall_detect": {
+  "v": 80,
+  "unit": "ms",
+  "tag": "design",
+  "note": "|a| < 0.3 g for 80 ms -> dampers armed"
+ },
+ "damper_valve_time": {
+  "v": 20,
+  "unit": "ms",
+  "tag": "design",
+  "note": ""
+ },
+ "damper_arm_margin": {
+  "v": 453,
+  "unit": "ms",
+  "tag": "calc",
+  "note": ""
+ },
+ "landing_freeze": {
+  "v": 0.3,
+  "unit": "s",
+  "tag": "design",
+  "note": "screen freeze at ground contact"
+ },
+ "link_OD": {
+  "v": 34.0,
+  "unit": "mm",
+  "tag": "design",
+  "note": ""
+ },
+ "link_ID": {
+  "v": 30.0,
+  "unit": "mm",
+  "tag": "design",
+  "note": ""
+ },
+ "link_I": {
+  "v": 25836,
+  "unit": "mm⁴",
+  "tag": "calc",
+  "note": ""
+ },
+ "link_load": {
+  "v": 6472,
+  "unit": "N",
+  "tag": "calc",
+  "note": "4 g landing force on ONE leg (asymmetric worst case)"
+ },
+ "link_eccentricity": {
+  "v": 60.0,
+  "unit": "mm",
+  "tag": "design",
+  "note": ""
+ },
+ "link_moment": {
+  "v": 388,
+  "unit": "N·m",
+  "tag": "calc",
+  "note": ""
+ },
+ "link_stress": {
+  "v": 255,
+  "unit": "MPa",
+  "tag": "calc",
+  "note": "σ = M c / I"
+ },
+ "link_FoS": {
+  "v": 3.44,
+  "unit": "",
+  "tag": "calc",
+  "note": ""
+ },
+ "ti_fatigue_limit": {
+  "v": 500,
+  "unit": "MPa",
+  "tag": "const",
+  "note": "approx., 1e7 cycles"
  },
  "bolt_M6_stress_area": {
   "v": 20.1,
@@ -666,7 +1764,7 @@
   "v": 12,
   "unit": "mm",
   "tag": "design",
-  "note": "2.0 × d in Al housing (DFM guide: ≥1.5 × d)"
+  "note": "2.0 × d in the Al housing (DFM guide: ≥ 1.5 × d)"
  },
  "bolt_turns": {
   "v": 12,
@@ -678,80 +1776,149 @@
   "v": 11939,
   "unit": "N",
   "tag": "calc",
-  "note": "0.75 × proof(0.9σy) × As"
+  "note": "0.75 × proof (0.9 σy) × As"
  },
  "bolt_torque": {
   "v": 14.3,
   "unit": "N·m",
   "tag": "calc",
-  "note": "T = K F d, K=0.2 (anti-seize on Ti)"
+  "note": "T = K F d, K = 0.2 (anti-seize on Ti)"
  },
- "fastener_count": {
-  "v": 400,
+ "flange_bolts": {
+  "L": 12,
+  "M": 8,
+  "S": 6
+ },
+ "flange_bolt_total": {
+  "v": 242,
   "unit": "",
+  "tag": "calc",
+  "note": "actuator output flanges"
+ },
+ "flange_pcd_L": {
+  "v": 96,
+  "unit": "mm",
   "tag": "design",
-  "note": "≈, M3–M8; exact count comes from the model"
+  "note": "L-class 12-bolt circle"
  },
  "hero_inspection_bolts": {
   "v": 12,
   "unit": "",
   "tag": "design",
-  "note": "bolts clickable in hero torque-wrench game"
+  "note": "left-knee output flange: the hero torque-wrench game"
  },
  "closeup_unscrew_bolts": {
   "v": 48,
   "unit": "",
   "tag": "design",
-  "note": "armor-plate bolts shown unscrewing full 12 turns in close-up; the rest of the ≈400 retract fast"
+  "note": "hip-flex ×2 + knee ×2 flanges, full 12 turns in the exploded view"
  },
  "bolt_sequence": {
-  "v": [
+  "12": [
+   1,
+   7,
+   4,
+   10,
+   2,
+   8,
+   5,
+   11,
+   3,
+   9,
+   6,
+   12
+  ],
+  "8": [
+   1,
+   5,
+   3,
+   7,
+   2,
+   6,
+   4,
+   8
+  ],
+  "6": [
    1,
    4,
    2,
    5,
-   3
-  ],
+   3,
+   6
+  ]
+ },
+ "latch_type": {
+  "v": "over-center (toggle) latch + locating pins",
   "unit": "",
-  "tag": "const",
-  "note": "star pattern"
+  "tag": "design",
+  "note": "robot cell operates them"
+ },
+ "latch_preload": {
+  "v": 500,
+  "unit": "N",
+  "tag": "design",
+  "note": "elastomer seal compressed 1.0 mm (k = 500 N/mm)"
+ },
+ "latch_overcenter": {
+  "v": 4,
+  "unit": "deg",
+  "tag": "design",
+  "note": "past dead centre -> self-locking; Hall sensor confirms"
  },
  "materials": {
   "Ti-6Al-4V": {
    "rho": 4.43,
    "E": 114,
-   "sy": 880,
+   "strength": 880,
    "su": 950,
    "Tmax": 400,
-   "use": "Structural links",
+   "use": "frame links, clevises, actuator rings (anodized), impact panels",
    "specific_strength": 199
   },
   "Al 7075-T6": {
    "rho": 2.81,
    "E": 71.7,
-   "sy": 503,
+   "strength": 503,
    "su": 572,
    "Tmax": 120,
-   "use": "Brackets, housings",
+   "use": "actuator housings, brackets, fuel-cell end plates",
    "specific_strength": 179
   },
-  "Inconel 718": {
-   "rho": 8.19,
-   "E": 200,
-   "sy": 1030,
-   "su": 1240,
-   "Tmax": 650,
-   "use": "Nozzles, heat shields",
-   "specific_strength": 126
-  },
-  "CFRP [0/±45/90]": {
+  "CFRP [0/±45/90]s": {
    "rho": 1.55,
    "E": 50,
-   "sy": 600,
+   "strength": 600,
    "su": 600,
    "Tmax": 120,
-   "use": "Armor skin",
+   "use": "armor skin, spine & pelvis frame, H2 cylinder overwrap",
    "specific_strength": 387
+  },
+  "Aramid/epoxy": {
+   "rho": 1.38,
+   "E": 30,
+   "strength": 500,
+   "su": 500,
+   "Tmax": 120,
+   "use": "armor inner liner (strong in tension, catches fragments)",
+   "specific_strength": 362
+  },
+  "17-4PH H900": {
+   "rho": 7.78,
+   "E": 197,
+   "strength": 1170,
+   "su": 1310,
+   "Tmax": 300,
+   "use": "damper rods & push rods (hard-chrome), latch hooks, pins",
+   "specific_strength": 150
+  },
+  "18CrNiMo7-6": {
+   "rho": 7.85,
+   "E": 210,
+   "strength": 850,
+   "su": 1200,
+   "Tmax": 150,
+   "use": "gears (case-hardened)",
+   "specific_strength": 108
   }
  },
  "cfrp_layup": [
@@ -760,134 +1927,264 @@
   -45,
   90
  ],
- "material_note": "CFRP has the highest specific strength, but links are Ti-6Al-4V: isotropic, damage/fatigue tolerant at clevises and threads, and usable to 400 °C near turbines. CFRP is used only for non-structural armor away from exhaust.",
- "heat_tint_ti": [
+ "material_note": "CFRP has the highest specific strength, yet the links are Ti-6Al-4V: isotropic and damage / fatigue tolerant at clevises and threads. CFRP is used where loads are spread over large, simple shapes (armor, spine, pelvis, cylinder overwrap); aramid backs it because it is strong in tension and catches fragments.",
+ "anodize_growth": {
+  "v": 2.0,
+  "unit": "nm/V",
+  "tag": "design",
+  "note": "anodic TiO2 ≈ 1.5–2.5 nm/V by electrolyte; 2.0 matches a thin-film render against the colour chart"
+ },
+ "anodize_film_ior": {
+  "v": 2.2,
+  "unit": "",
+  "tag": "const",
+  "note": "anodic TiO2 ≈ 2.1–2.4"
+ },
+ "anodize_gold_voltage": {
+  "v": 62,
+  "unit": "V",
+  "tag": "design",
+  "note": "2nd-order gold: the rotation rings"
+ },
+ "anodize_gold_thickness": {
+  "v": 124,
+  "unit": "nm",
+  "tag": "calc",
+  "note": ""
+ },
+ "anodize_bronze_voltage": {
+  "v": 12.5,
+  "unit": "V",
+  "tag": "design",
+  "note": "1st-order bronze: back louvers"
+ },
+ "anodize_bronze_thickness": {
+  "v": 25,
+  "unit": "nm",
+  "tag": "calc",
+  "note": ""
+ },
+ "anodize_chart": [
   {
-   "T": 250,
-   "c": "#c9b27a",
+   "V": 0,
+   "nm": 0,
+   "name": "bare Ti"
+  },
+  {
+   "V": 7.5,
+   "nm": 15,
    "name": "light straw"
   },
   {
-   "T": 320,
-   "c": "#b08a4a",
-   "name": "dark straw"
+   "V": 12.5,
+   "nm": 25,
+   "name": "bronze (1st-order gold)"
   },
   {
-   "T": 400,
-   "c": "#8a5a32",
-   "name": "bronze (Ti limit)"
-  }
- ],
- "heat_tint_inconel": [
-  {
-   "T": 450,
-   "c": "#a8844e",
-   "name": "straw"
-  },
-  {
-   "T": 520,
-   "c": "#7a4a38",
-   "name": "brown"
-  },
-  {
-   "T": 580,
-   "c": "#5a3c7a",
+   "V": 17.5,
+   "nm": 35,
    "name": "purple"
   },
   {
-   "T": 650,
-   "c": "#2f5fa8",
+   "V": 22.5,
+   "nm": 45,
    "name": "blue"
   },
   {
-   "T": 750,
-   "c": "#6f7f8c",
-   "name": "grey (exhaust lip)"
+   "V": 30,
+   "nm": 60,
+   "name": "light blue"
+  },
+  {
+   "V": 37.5,
+   "nm": 75,
+   "name": "pale blue-silver"
+  },
+  {
+   "V": 42.5,
+   "nm": 85,
+   "name": "silver"
+  },
+  {
+   "V": 47.5,
+   "nm": 95,
+   "name": "champagne"
+  },
+  {
+   "V": 55,
+   "nm": 110,
+   "name": "pale gold"
+  },
+  {
+   "V": 62,
+   "nm": 124,
+   "name": "gold (2nd order)"
+  },
+  {
+   "V": 70,
+   "nm": 140,
+   "name": "copper"
+  },
+  {
+   "V": 80,
+   "nm": 160,
+   "name": "magenta"
+  },
+  {
+   "V": 90,
+   "nm": 180,
+   "name": "deep blue (2nd order)"
   }
  ],
- "link_OD": {
-  "v": 32.0,
-  "unit": "mm",
-  "tag": "design",
-  "note": ""
- },
- "link_ID": {
-  "v": 28.0,
-  "unit": "mm",
-  "tag": "design",
-  "note": ""
- },
- "link_I": {
-  "v": 21300,
-  "unit": "mm⁴",
-  "tag": "calc",
-  "note": ""
- },
- "landing_load_factor": {
-  "v": 4,
-  "unit": "g",
-  "tag": "design",
-  "note": "asymmetric landing, one leg"
- },
- "landing_force": {
-  "v": 6041,
-  "unit": "N",
-  "tag": "calc",
-  "note": ""
- },
- "link_eccentricity": {
-  "v": 60.0,
-  "unit": "mm",
-  "tag": "design",
-  "note": ""
- },
- "link_moment": {
-  "v": 362,
-  "unit": "N·m",
-  "tag": "calc",
-  "note": ""
- },
- "link_stress": {
-  "v": 272,
-  "unit": "MPa",
-  "tag": "calc",
-  "note": ""
- },
- "link_FoS": {
-  "v": 3.23,
+ "anodize_note": "colour names from a Cycles thin-film render (Ti base, film IOR 2.2), 2026-09-30; approximate",
+ "palette_3d": [
+  {
+   "name": "graphite",
+   "finish": "CFRP, clear-coat, twill weave",
+   "share": [
+    0.4,
+    0.5
+   ],
+   "where": "armor faces (resting surfaces)"
+  },
+  {
+   "name": "gunmetal",
+   "finish": "bead-blasted Ti-6Al-4V",
+   "share": [
+    0.25,
+    0.32
+   ],
+   "where": "frame, housings, impact panels, helmet brow"
+  },
+  {
+   "name": "platinum",
+   "finish": "polished Ti keel strips, hard-chrome rods",
+   "share": [
+    0.06,
+    0.1
+   ],
+   "where": "form lines, sliding parts"
+  },
+  {
+   "name": "ti_gold",
+   "finish": "anodized Ti 62 V (124 nm)",
+   "share": [
+    0.08,
+    0.11
+   ],
+   "where": "rotation rings = joint axes"
+  },
+  {
+   "name": "ti_bronze",
+   "finish": "anodized Ti 12.5 V (25 nm)",
+   "share": [
+    0.01,
+    0.03
+   ],
+   "where": "back louvers"
+  },
+  {
+   "name": "gold",
+   "finish": "gold plating, gold IR film, MLI foil",
+   "share": [
+    0.01,
+    0.02
+   ],
+   "where": "contacts, visor tint, insulation"
+  }
+ ],
+ "gold_family_share": {
+  "v": [
+   0.1,
+   0.15
+  ],
   "unit": "",
-  "tag": "calc",
-  "note": ""
+  "tag": "design",
+  "note": "ti_gold + ti_bronze + gold, measured on the model"
  },
- "ti_fatigue_limit": {
-  "v": 500,
-  "unit": "MPa",
-  "tag": "const",
-  "note": "approx., 1e7 cycles"
+ "red_share": {
+  "v": 0.0,
+  "unit": "",
+  "tag": "design",
+  "note": "no red anywhere on the suit"
  },
- "drop_height": {
-  "v": 0.5,
-  "unit": "m",
+ "camera_count": {
+  "v": 4,
+  "unit": "",
+  "tag": "design",
+  "note": "2 per eye: forward stereo + temporal wide (raptors have two foveae per eye)"
+ },
+ "stereo_baseline": {
+  "v": 64,
+  "unit": "mm",
+  "tag": "design",
+  "note": "= pilot IPD, so distances are not distorted"
+ },
+ "camera_fps": {
+  "v": 120,
+  "unit": "fps",
   "tag": "design",
   "note": ""
  },
- "impact_velocity": {
-  "v": 3.13,
-  "unit": "m/s",
-  "tag": "calc",
+ "hud_processing_time": {
+  "v": 4.0,
+  "unit": "ms",
+  "tag": "design",
   "note": ""
  },
- "landing_stroke": {
-  "v": 167,
-  "unit": "mm",
+ "display_refresh": {
+  "v": 120,
+  "unit": "Hz",
+  "tag": "design",
+  "note": "2 micro-OLED displays"
+ },
+ "motion_to_photon": {
+  "v": 16.5,
+  "unit": "ms",
   "tag": "calc",
-  "note": "4g ground force => 3g net decel"
+  "note": "exposure/readout + processing + half a scan-out"
+ },
+ "motion_to_photon_max": {
+  "v": 20,
+  "unit": "ms",
+  "tag": "design",
+  "note": "comfort limit for camera pass-through"
+ },
+ "uv_channel": {
+  "v": "near-UV on the temporal cameras",
+  "unit": "",
+  "tag": "design",
+  "note": "nod to kestrels seeing vole scent marks in UV (Viitala et al., 1995)"
+ },
+ "cuff_force_sensors": {
+  "v": 4,
+  "unit": "",
+  "tag": "design",
+  "note": "6-axis F/T at forearm and shank cuffs (intent estimation)"
+ },
+ "foot_pressure_insoles": {
+  "v": 2,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "face_keel_release": {
+  "v": "manual pull handle",
+  "unit": "",
+  "tag": "design",
+  "note": "direct view if the cameras fail"
  },
  "beam_mode_ratios": [
   1.0,
   2.756,
   5.404,
   8.933
+ ],
+ "cantilever_mode_ratios": [
+  1.0,
+  6.267,
+  17.547,
+  34.386
  ],
  "mains_hum": {
   "v": 120,
@@ -901,23 +2198,25 @@
   "tag": "design",
   "note": ""
  },
- "pilot_height": {
-  "v": 1.75,
-  "unit": "m",
-  "tag": "design",
-  "note": "barefoot stature"
- },
- "foot_plate_thickness": {
-  "v": 0.02,
-  "unit": "m",
-  "tag": "design",
-  "note": "exo foot plate under the boot"
- },
- "boot_sole_thickness": {
-  "v": 0.025,
-  "unit": "m",
-  "tag": "design",
+ "power_pack_width": {
+  "v": 539,
+  "unit": "mm",
+  "tag": "calc",
   "note": ""
+ },
+ "power_pack_depth": {
+  "v": 165,
+  "unit": "mm",
+  "tag": "calc",
+  "note": ""
+ },
+ "clash_checks_static": {
+  "pack vs shoulder_abd": "clear",
+  "pack vs neck": "clear",
+  "pack vs trunk_rot": "clear",
+  "pack vs waist ring": "clear",
+  "sacral vs hip_abd": "clear",
+  "sacral vs trunk_rot": "clear"
  },
  "layout": {
   "frame": "Blender metres, Z up, front = −Y, +X = suit LEFT; glTF (x, z, −y)",
@@ -1002,11 +2301,11 @@
      0
     ],
     "cls": "L",
-    "note": "behind hip on pelvis belt; 6–7 cm misalignment taken by a passive slider in the thigh link"
+    "note": "behind the hip on the pelvis frame; 6–7 cm misalignment taken by a passive slider"
    },
    "hip_flex": {
     "c": [
-     0.229,
+     0.22,
      0.0,
      0.9708
     ],
@@ -1019,17 +2318,17 @@
    },
    "hip_rot": {
     "c": [
-     0.213,
+     0.204,
      0.002,
      0.8
     ],
     "axis": "link",
     "cls": "M",
-    "note": "in-line with the thigh link, 40 % down from the hip actuator"
+    "note": "in-line with the thigh link, 40 % down from the hip actuator (a twist ring)"
    },
    "knee": {
     "c": [
-     0.189,
+     0.18,
      0.005,
      0.5437
     ],
@@ -1038,40 +2337,47 @@
      0,
      0
     ],
-    "cls": "L"
+    "cls": "L",
+    "note": "parallel semi-active hydraulic damper on the lateral thigh"
    },
    "ankle_pitch": {
     "c": [
-     0.166,
-     0.0,
-     0.1133
+     0.165,
+     0.06,
+     0.395
     ],
     "axis": [
      1,
      0,
      0
     ],
-    "cls": "M"
+    "cls": "L",
+    "joint": [
+     0.15,
+     0.0,
+     0.1133
+    ],
+    "note": "actuator sits high on the calf and drives the ankle bearing through a crank + push rod (Achilles linkage): less mass at the foot"
    },
    "ankle_roll": {
     "c": [
      0.09,
-     0.095,
-     0.078
+     0.1,
+     0.085
     ],
     "axis": [
      0,
      1,
      0
     ],
-    "cls": "S",
+    "cls": "M",
     "note": "behind the heel"
    },
    "trunk_rot": {
     "c": [
      0,
-     0.165,
-     1.13
+     0.247,
+     1.08
     ],
     "axis": [
      0,
@@ -1079,13 +2385,24 @@
      1
     ],
     "cls": "M",
-    "side": "C"
+    "side": "C",
+    "ring": {
+     "c": [
+      0,
+      0.06,
+      1.13
+     ],
+     "teeth": 170,
+     "pinion": 17,
+     "module": 2.0
+    },
+    "note": "on the pelvis frame; its pinion drives the waist ring gear (torso turns on the ring)"
    },
    "neck": {
     "c": [
      0,
-     0.125,
-     1.5437
+     0.1315,
+     1.5137
     ],
     "axis": [
      0,
@@ -1093,7 +2410,18 @@
      1
     ],
     "cls": "S",
-    "side": "C"
+    "side": "C",
+    "ring": {
+     "c": [
+      0,
+      0.01,
+      1.5547
+     ],
+     "teeth": 96,
+     "pinion": 12,
+     "module": 2.25
+    },
+    "note": "drives the collar ring: the helmet's weight sits on the suit, not on the pilot's neck"
    },
    "shoulder_abd": {
     "c": [
@@ -1111,7 +2439,7 @@
    },
    "shoulder_flex": {
     "c": [
-     0.294,
+     0.285,
      0.02,
      1.4345
     ],
@@ -1134,16 +2462,16 @@
    },
    "elbow": {
     "c": [
-     0.3193,
+     0.3274,
      0.02,
-     1.1714
+     1.1732
     ],
     "axis": [
-     0.9781476007338057,
+     0.9781,
      0,
-     0.20791169081775934
+     0.2079
     ],
-    "cls": "M"
+    "cls": "L"
    },
    "wrist": {
     "c": [
@@ -1157,7 +2485,7 @@
      -0.9448
     ],
     "cls": "S",
-    "note": "rotates the throttle grip module"
+    "note": "turns the gauntlet (pronation / supination)"
    }
   },
   "forearm_dir": [
@@ -1165,77 +2493,145 @@
    -0.2588,
    -0.9448
   ],
-  "back_turbine": {
+  "power_pack": {
+   "fc_module": {
+    "c": [
+     0,
+     0.3125,
+     1.37
+    ],
+    "size": [
+     0.2,
+     0.165,
+     0.4
+    ]
+   },
+   "h2_cylinders": {
+    "c": [
+     0.1874,
+     0.3124,
+     1.37
+    ],
+    "axis": [
+     0,
+     0,
+     1
+    ],
+    "od": 0.1647,
+    "len": 0.4,
+    "note": "mirror x for the right cylinder"
+   },
+   "width": 0.539,
+   "depth": 0.165,
+   "z": [
+    1.17,
+    1.57
+   ],
+   "air": "intake behind the collar, exhaust through lower rear louvers; never toward the pilot",
+   "insulation": "gold MLI (aluminized polyimide) between the pack and the pilot's back"
+  },
+  "sacral_module": {
    "c": [
     0,
-    0.345,
-    1.3625
+    0.3,
+    0.975
    ],
-   "axis": [
-    0,
-    0,
-    -1
-   ],
-   "note": "vertical, exhaust down"
-  },
-  "arm_pod": {
-   "lateral": 0.105,
-   "fore_aft": 0.082,
-   "along": 0.04,
-   "turbine_r": 0.0742,
-   "turbine_len": 0.39
-  },
-  "tanks": {
-   "x": 0.176,
-   "y": 0.3,
-   "zc": 1.3425,
-   "r": 0.08,
-   "len": 0.4512,
-   "volume_L_each": 8.0
-  },
-  "battery": {
    "size": [
-    0.18,
-    0.07,
-    0.3
+    0.36,
+    0.14,
+    0.12
    ],
+   "holds": "buffer battery 16S2P + chiller (compressor, condenser + fan, evaporator) + pump + reservoir",
+   "note": "on the pelvis frame; its cables cross the waist ring through a ±30° twist loop"
+  },
+  "waist_ring": {
    "c": [
     0,
-    0.22,
-    1.3525
+    0.06,
+    1.13
    ],
-   "note": "3.78 L pack, ≈317 Wh/L"
+   "pd": 0.34
   },
-  "stand": {
-   "post_x": 0.46,
-   "post_y": 0.62,
-   "height": 2.15,
-   "clamp_z": 1.4225
+  "collar_ring": {
+   "c": [
+    0,
+    0.01,
+    1.5547
+   ],
+   "pd": 0.216
+  },
+  "cell": {
+   "platform": {
+    "d": 1.4,
+    "height": 0.12,
+    "note": "turntable positioner, top at z = 0"
+   },
+   "gantry": {
+    "post_x": 1.6,
+    "post_y": 0.3,
+    "beam_z": 3.0,
+    "note": "Z-hoist lowers the power pack and the helmet"
+   },
+   "arms": [
+    {
+     "base": [
+      1.05,
+      -0.55,
+      0.0
+     ],
+     "reach": 1.65
+    },
+    {
+     "base": [
+      -1.05,
+      -0.55,
+      0.0
+     ],
+     "reach": 1.65
+    },
+    {
+     "base": [
+      1.05,
+      0.75,
+      0.0
+     ],
+     "reach": 1.65
+    },
+    {
+     "base": [
+      -1.05,
+      0.75,
+      0.0
+     ],
+     "reach": 1.65
+    }
+   ],
+   "racks": {
+    "x": 2.1,
+    "y": [
+     -1.0,
+     1.0
+    ],
+    "depth": 0.6,
+    "height": 2.0,
+    "note": "armor panels in foam fixtures"
+   },
+   "cradle": {
+    "post_y": 0.62,
+    "height": 1.6,
+    "clamp_z": 1.45,
+    "note": "holds the empty suit at the pack hard points"
+   }
   }
  },
- "tank_length": {
-  "v": 451,
-  "unit": "mm",
-  "tag": "calc",
-  "note": "Ø160 cylinder with hemispherical ends, 8.0 L each"
- },
- "upper_arm_length": {
-  "v": 285,
-  "unit": "mm",
-  "tag": "calc",
-  "note": "0.163 H"
- },
- "forearm_length": {
-  "v": 256,
-  "unit": "mm",
-  "tag": "calc",
-  "note": "0.146 H"
- },
  "_headline": {
-  "dry": 78.95,
-  "takeoff": 166.75,
-  "W": 1635.8,
-  "T": 2125.0,
-  "TW": 1.299
+  "suit_mass": 89.92108369011021,
+  "system_mass": 164.9210836901102,
+  "knee_torque": 247,
+  "landing_force": 6471.503323999925,
+  "drop_height": 1.5,
+  "lift_mass": 90,
+  "endurance_h": 4.961964880775125,
+  "fc_power": 2400
  }
 }
