@@ -1,0 +1,2833 @@
+{
+ "asset": "HX-01 KESTREL",
+ "stage": "blockout",
+ "frame": "glTF (x, z, −y) of Blender",
+ "parts": [
+  {
+   "name": "GEO-kst_act_trunk_rot",
+   "parent": "HLP-kst_j_pelvis",
+   "tris": 1908,
+   "pivot": [
+    0.0,
+    1.13,
+    -0.165
+   ],
+   "part_no": "HX01-M-TRUNK_ROT",
+   "cls": "M",
+   "mass_kg": 0.7,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 104,
+   "width_mm": 62
+  },
+  {
+   "name": "GEO-kst_pelvis_belt",
+   "parent": "HLP-kst_j_pelvis",
+   "tris": 1728,
+   "pivot": [
+    0.0,
+    1.0775,
+    -0.0
+   ],
+   "kind": "frame",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-FR-001",
+   "mass_kg": 1.1
+  },
+  {
+   "name": "GEO-kst_spine_plate",
+   "parent": "HLP-kst_j_trunk_rot",
+   "tris": 108,
+   "pivot": [
+    0.0,
+    1.345,
+    -0.17
+   ],
+   "part_no": "HX01-FR-010",
+   "kind": "frame",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 1.4
+  },
+  {
+   "name": "GEO-kst_shoulder_yoke",
+   "parent": "HLP-kst_j_trunk_rot",
+   "tris": 108,
+   "pivot": [
+    0.0,
+    1.525,
+    -0.185
+   ],
+   "part_no": "HX01-FR-011",
+   "kind": "frame",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.6
+  },
+  {
+   "name": "GEO-kst_act_neck",
+   "parent": "HLP-kst_j_trunk_rot",
+   "tris": 1908,
+   "pivot": [
+    0.0,
+    1.5437,
+    -0.125
+   ],
+   "part_no": "HX01-S-NECK",
+   "cls": "S",
+   "mass_kg": 0.45,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 80,
+   "width_mm": 50
+  },
+  {
+   "name": "GEO-kst_act_hip_abd.L",
+   "parent": "HLP-kst_j_pelvis",
+   "tris": 1908,
+   "pivot": [
+    0.135,
+    1.0258,
+    -0.15
+   ],
+   "part_no": "HX01-L-HIP_ABDL",
+   "cls": "L",
+   "mass_kg": 1.4,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 135,
+   "width_mm": 78
+  },
+  {
+   "name": "GEO-kst_bracket_hip.L",
+   "parent": "HLP-kst_j_hip_abd.L",
+   "tris": 512,
+   "pivot": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-BR-HIP.L",
+   "mass_kg": 0.25
+  },
+  {
+   "name": "GEO-kst_act_hip_flex.L",
+   "parent": "HLP-kst_j_hip_abd.L",
+   "tris": 1908,
+   "pivot": [
+    0.229,
+    0.9708,
+    -0.0
+   ],
+   "part_no": "HX01-L-HIP_FLEXL",
+   "cls": "L",
+   "mass_kg": 1.4,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 135,
+   "width_mm": 78
+  },
+  {
+   "name": "GEO-kst_thigh_link_upper.L",
+   "parent": "HLP-kst_j_hip_flex.L",
+   "tris": 76,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-LK-TH1.L",
+   "mass_kg": 0.35
+  },
+  {
+   "name": "GEO-kst_act_hip_rot.L",
+   "parent": "HLP-kst_j_hip_flex.L",
+   "tris": 1908,
+   "pivot": [
+    0.213,
+    0.8,
+    -0.002
+   ],
+   "part_no": "HX01-M-HIP_ROTL",
+   "cls": "M",
+   "mass_kg": 0.7,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 104,
+   "width_mm": 62
+  },
+  {
+   "name": "GEO-kst_thigh_link_lower.L",
+   "parent": "HLP-kst_j_hip_rot.L",
+   "tris": 76,
+   "pivot": [
+    -0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-LK-TH2.L",
+   "mass_kg": 0.35,
+   "od_mm": 32,
+   "id_mm": 28
+  },
+  {
+   "name": "GEO-kst_act_knee.L",
+   "parent": "HLP-kst_j_hip_rot.L",
+   "tris": 1908,
+   "pivot": [
+    0.189,
+    0.5437,
+    -0.005
+   ],
+   "part_no": "HX01-L-KNEEL",
+   "cls": "L",
+   "mass_kg": 1.4,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 135,
+   "width_mm": 78
+  },
+  {
+   "name": "GEO-kst_shank_link.L",
+   "parent": "HLP-kst_j_knee.L",
+   "tris": 76,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-LK-SH.L",
+   "mass_kg": 0.4,
+   "od_mm": 32,
+   "id_mm": 28
+  },
+  {
+   "name": "GEO-kst_act_ankle_pitch.L",
+   "parent": "HLP-kst_j_knee.L",
+   "tris": 1908,
+   "pivot": [
+    0.166,
+    0.1133,
+    -0.0
+   ],
+   "part_no": "HX01-M-ANKLE_PITCHL",
+   "cls": "M",
+   "mass_kg": 0.7,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 104,
+   "width_mm": 62
+  },
+  {
+   "name": "GEO-kst_stirrup.L",
+   "parent": "HLP-kst_j_ankle_pitch.L",
+   "tris": 512,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-BR-ST.L",
+   "mass_kg": 0.2
+  },
+  {
+   "name": "GEO-kst_act_ankle_roll.L",
+   "parent": "HLP-kst_j_ankle_pitch.L",
+   "tris": 1908,
+   "pivot": [
+    0.09,
+    0.078,
+    -0.095
+   ],
+   "part_no": "HX01-S-ANKLE_ROLLL",
+   "cls": "S",
+   "mass_kg": 0.45,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 80,
+   "width_mm": 50
+  },
+  {
+   "name": "GEO-kst_foot_plate.L",
+   "parent": "HLP-kst_j_ankle_roll.L",
+   "tris": 108,
+   "pivot": [
+    0.09,
+    0.01,
+    0.08
+   ],
+   "part_no": "HX01-FT-001.L",
+   "kind": "frame",
+   "material": "Ti-6Al-4V + load cell",
+   "mass_kg": 0.55
+  },
+  {
+   "name": "GEO-kst_heel_upright.L",
+   "parent": "HLP-kst_j_ankle_roll.L",
+   "tris": 108,
+   "pivot": [
+    0.09,
+    0.049,
+    -0.065
+   ],
+   "kind": "frame",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.08
+  },
+  {
+   "name": "GEO-kst_sole.L",
+   "parent": "HLP-kst_j_ankle_roll.L",
+   "tris": 12,
+   "pivot": [
+    0.09,
+    0.004,
+    0.08
+   ],
+   "kind": "sole",
+   "material": "rubber tread"
+  },
+  {
+   "name": "GEO-kst_act_hip_abd.R",
+   "parent": "HLP-kst_j_pelvis",
+   "tris": 1908,
+   "pivot": [
+    -0.135,
+    1.0258,
+    -0.15
+   ],
+   "part_no": "HX01-L-HIP_ABDR",
+   "cls": "L",
+   "mass_kg": 1.4,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 135,
+   "width_mm": 78
+  },
+  {
+   "name": "GEO-kst_bracket_hip.R",
+   "parent": "HLP-kst_j_hip_abd.R",
+   "tris": 512,
+   "pivot": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-BR-HIP.R",
+   "mass_kg": 0.25
+  },
+  {
+   "name": "GEO-kst_act_hip_flex.R",
+   "parent": "HLP-kst_j_hip_abd.R",
+   "tris": 1908,
+   "pivot": [
+    -0.229,
+    0.9708,
+    0.0
+   ],
+   "part_no": "HX01-L-HIP_FLEXR",
+   "cls": "L",
+   "mass_kg": 1.4,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 135,
+   "width_mm": 78
+  },
+  {
+   "name": "GEO-kst_thigh_link_upper.R",
+   "parent": "HLP-kst_j_hip_flex.R",
+   "tris": 76,
+   "pivot": [
+    -0.0,
+    0.0,
+    0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-LK-TH1.R",
+   "mass_kg": 0.35
+  },
+  {
+   "name": "GEO-kst_act_hip_rot.R",
+   "parent": "HLP-kst_j_hip_flex.R",
+   "tris": 1908,
+   "pivot": [
+    -0.213,
+    0.8,
+    -0.002
+   ],
+   "part_no": "HX01-M-HIP_ROTR",
+   "cls": "M",
+   "mass_kg": 0.7,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 104,
+   "width_mm": 62
+  },
+  {
+   "name": "GEO-kst_thigh_link_lower.R",
+   "parent": "HLP-kst_j_hip_rot.R",
+   "tris": 76,
+   "pivot": [
+    0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-LK-TH2.R",
+   "mass_kg": 0.35,
+   "od_mm": 32,
+   "id_mm": 28
+  },
+  {
+   "name": "GEO-kst_act_knee.R",
+   "parent": "HLP-kst_j_hip_rot.R",
+   "tris": 1908,
+   "pivot": [
+    -0.189,
+    0.5437,
+    -0.005
+   ],
+   "part_no": "HX01-L-KNEER",
+   "cls": "L",
+   "mass_kg": 1.4,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 135,
+   "width_mm": 78
+  },
+  {
+   "name": "GEO-kst_shank_link.R",
+   "parent": "HLP-kst_j_knee.R",
+   "tris": 76,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-LK-SH.R",
+   "mass_kg": 0.4,
+   "od_mm": 32,
+   "id_mm": 28
+  },
+  {
+   "name": "GEO-kst_act_ankle_pitch.R",
+   "parent": "HLP-kst_j_knee.R",
+   "tris": 1908,
+   "pivot": [
+    -0.166,
+    0.1133,
+    -0.0
+   ],
+   "part_no": "HX01-M-ANKLE_PITCHR",
+   "cls": "M",
+   "mass_kg": 0.7,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 104,
+   "width_mm": 62
+  },
+  {
+   "name": "GEO-kst_stirrup.R",
+   "parent": "HLP-kst_j_ankle_pitch.R",
+   "tris": 512,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-BR-ST.R",
+   "mass_kg": 0.2
+  },
+  {
+   "name": "GEO-kst_act_ankle_roll.R",
+   "parent": "HLP-kst_j_ankle_pitch.R",
+   "tris": 1908,
+   "pivot": [
+    -0.09,
+    0.078,
+    -0.095
+   ],
+   "part_no": "HX01-S-ANKLE_ROLLR",
+   "cls": "S",
+   "mass_kg": 0.45,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 80,
+   "width_mm": 50
+  },
+  {
+   "name": "GEO-kst_foot_plate.R",
+   "parent": "HLP-kst_j_ankle_roll.R",
+   "tris": 108,
+   "pivot": [
+    -0.09,
+    0.01,
+    0.08
+   ],
+   "part_no": "HX01-FT-001.R",
+   "kind": "frame",
+   "material": "Ti-6Al-4V + load cell",
+   "mass_kg": 0.55
+  },
+  {
+   "name": "GEO-kst_heel_upright.R",
+   "parent": "HLP-kst_j_ankle_roll.R",
+   "tris": 108,
+   "pivot": [
+    -0.09,
+    0.049,
+    -0.065
+   ],
+   "kind": "frame",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.08
+  },
+  {
+   "name": "GEO-kst_sole.R",
+   "parent": "HLP-kst_j_ankle_roll.R",
+   "tris": 12,
+   "pivot": [
+    -0.09,
+    0.004,
+    0.08
+   ],
+   "kind": "sole",
+   "material": "rubber tread"
+  },
+  {
+   "name": "GEO-kst_act_shoulder_abd.L",
+   "parent": "HLP-kst_j_trunk_rot",
+   "tris": 1908,
+   "pivot": [
+    0.185,
+    1.4345,
+    -0.155
+   ],
+   "part_no": "HX01-L-SHOULDER_ABDL",
+   "cls": "L",
+   "mass_kg": 1.4,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 135,
+   "width_mm": 78
+  },
+  {
+   "name": "GEO-kst_yoke_drop.L",
+   "parent": "HLP-kst_j_trunk_rot",
+   "tris": 76,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.1
+  },
+  {
+   "name": "GEO-kst_shoulder_arc.L",
+   "parent": "HLP-kst_j_shoulder_abd.L",
+   "tris": 948,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-BR-SA.L",
+   "mass_kg": 0.3
+  },
+  {
+   "name": "GEO-kst_act_shoulder_flex.L",
+   "parent": "HLP-kst_j_shoulder_abd.L",
+   "tris": 1908,
+   "pivot": [
+    0.294,
+    1.4345,
+    -0.02
+   ],
+   "part_no": "HX01-L-SHOULDER_FLEXL",
+   "cls": "L",
+   "mass_kg": 1.4,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 135,
+   "width_mm": 78
+  },
+  {
+   "name": "GEO-kst_act_shoulder_rot.L",
+   "parent": "HLP-kst_j_shoulder_flex.L",
+   "tris": 960,
+   "pivot": [
+    0.2099,
+    1.3171,
+    -0.02
+   ],
+   "kind": "actuator",
+   "cls": "M",
+   "mass_kg": 0.7,
+   "part_no": "HX01-M-SHOULDER_ROT.L",
+   "material": "Al 7075-T6 arc rail + crossed-roller carriage"
+  },
+  {
+   "name": "GEO-kst_upper_arm_link_top.L",
+   "parent": "HLP-kst_j_shoulder_flex.L",
+   "tris": 76,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.15
+  },
+  {
+   "name": "GEO-kst_upper_arm_link.L",
+   "parent": "HLP-kst_j_shoulder_rot.L",
+   "tris": 76,
+   "pivot": [
+    0.0,
+    -0.0,
+    0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-LK-UA.L",
+   "mass_kg": 0.3,
+   "od_mm": 30,
+   "id_mm": 26
+  },
+  {
+   "name": "GEO-kst_act_elbow.L",
+   "parent": "HLP-kst_j_shoulder_rot.L",
+   "tris": 1908,
+   "pivot": [
+    0.3193,
+    1.1714,
+    -0.02
+   ],
+   "part_no": "HX01-M-ELBOWL",
+   "cls": "M",
+   "mass_kg": 0.7,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 104,
+   "width_mm": 62
+  },
+  {
+   "name": "GEO-kst_turbine_arm.L1",
+   "parent": "HLP-kst_j_elbow.L",
+   "tris": 1152,
+   "pivot": [
+    0.37628,
+    1.03959,
+    0.10261
+   ],
+   "kind": "turbine",
+   "material": "Inconel 718 / Ti casing",
+   "mass_kg": 4.01,
+   "part_no": "HX01-TB-L1",
+   "thrust_N": 425.0
+  },
+  {
+   "name": "GEO-kst_turbine_arm.L2",
+   "parent": "HLP-kst_j_elbow.L",
+   "tris": 1152,
+   "pivot": [
+    0.3851,
+    0.99808,
+    -0.0558
+   ],
+   "kind": "turbine",
+   "material": "Inconel 718 / Ti casing",
+   "mass_kg": 4.01,
+   "part_no": "HX01-TB-L2",
+   "thrust_N": 425.0
+  },
+  {
+   "name": "GEO-kst_pod_band.L0",
+   "parent": "HLP-kst_j_elbow.L",
+   "tris": 108,
+   "pivot": [
+    0.36061,
+    1.11332,
+    -0.00248
+   ],
+   "kind": "frame",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.12
+  },
+  {
+   "name": "GEO-kst_pod_band.L1",
+   "parent": "HLP-kst_j_elbow.L",
+   "tris": 108,
+   "pivot": [
+    0.40077,
+    0.92435,
+    0.04928
+   ],
+   "kind": "frame",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.12
+  },
+  {
+   "name": "GEO-kst_pod_spine.L",
+   "parent": "HLP-kst_j_elbow.L",
+   "tris": 512,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.25
+  },
+  {
+   "name": "GEO-kst_act_wrist.L",
+   "parent": "HLP-kst_j_elbow.L",
+   "tris": 1152,
+   "pivot": [
+    0.2956,
+    0.9141,
+    0.0461
+   ],
+   "kind": "actuator",
+   "cls": "S",
+   "mass_kg": 0.45,
+   "part_no": "HX01-S-WRIST.L",
+   "material": "hollow-shaft torque motor"
+  },
+  {
+   "name": "GEO-kst_grip.L",
+   "parent": "HLP-kst_j_wrist.L",
+   "tris": 76,
+   "pivot": [
+    0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "control",
+   "material": "rubber over Al",
+   "part_no": "HX01-GR-001.L"
+  },
+  {
+   "name": "GEO-kst_grip_arm.L",
+   "parent": "HLP-kst_j_wrist.L",
+   "tris": 512,
+   "pivot": [
+    0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V"
+  },
+  {
+   "name": "GEO-kst_act_shoulder_abd.R",
+   "parent": "HLP-kst_j_trunk_rot",
+   "tris": 1908,
+   "pivot": [
+    -0.185,
+    1.4345,
+    -0.155
+   ],
+   "part_no": "HX01-L-SHOULDER_ABDR",
+   "cls": "L",
+   "mass_kg": 1.4,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 135,
+   "width_mm": 78
+  },
+  {
+   "name": "GEO-kst_yoke_drop.R",
+   "parent": "HLP-kst_j_trunk_rot",
+   "tris": 76,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.1
+  },
+  {
+   "name": "GEO-kst_shoulder_arc.R",
+   "parent": "HLP-kst_j_shoulder_abd.R",
+   "tris": 948,
+   "pivot": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-BR-SA.R",
+   "mass_kg": 0.3
+  },
+  {
+   "name": "GEO-kst_act_shoulder_flex.R",
+   "parent": "HLP-kst_j_shoulder_abd.R",
+   "tris": 1908,
+   "pivot": [
+    -0.294,
+    1.4345,
+    -0.02
+   ],
+   "part_no": "HX01-L-SHOULDER_FLEXR",
+   "cls": "L",
+   "mass_kg": 1.4,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 135,
+   "width_mm": 78
+  },
+  {
+   "name": "GEO-kst_act_shoulder_rot.R",
+   "parent": "HLP-kst_j_shoulder_flex.R",
+   "tris": 960,
+   "pivot": [
+    -0.2099,
+    1.3171,
+    -0.02
+   ],
+   "kind": "actuator",
+   "cls": "M",
+   "mass_kg": 0.7,
+   "part_no": "HX01-M-SHOULDER_ROT.R",
+   "material": "Al 7075-T6 arc rail + crossed-roller carriage"
+  },
+  {
+   "name": "GEO-kst_upper_arm_link_top.R",
+   "parent": "HLP-kst_j_shoulder_flex.R",
+   "tris": 76,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.15
+  },
+  {
+   "name": "GEO-kst_upper_arm_link.R",
+   "parent": "HLP-kst_j_shoulder_rot.R",
+   "tris": 76,
+   "pivot": [
+    0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-LK-UA.R",
+   "mass_kg": 0.3,
+   "od_mm": 30,
+   "id_mm": 26
+  },
+  {
+   "name": "GEO-kst_act_elbow.R",
+   "parent": "HLP-kst_j_shoulder_rot.R",
+   "tris": 1908,
+   "pivot": [
+    -0.3193,
+    1.1714,
+    -0.02
+   ],
+   "part_no": "HX01-M-ELBOWR",
+   "cls": "M",
+   "mass_kg": 0.7,
+   "material": "Al 7075-T6 housing / Ti output",
+   "kind": "actuator",
+   "od_mm": 104,
+   "width_mm": 62
+  },
+  {
+   "name": "GEO-kst_turbine_arm.R1",
+   "parent": "HLP-kst_j_elbow.R",
+   "tris": 1152,
+   "pivot": [
+    -0.37628,
+    1.03959,
+    0.10261
+   ],
+   "kind": "turbine",
+   "material": "Inconel 718 / Ti casing",
+   "mass_kg": 4.01,
+   "part_no": "HX01-TB-R1",
+   "thrust_N": 425.0
+  },
+  {
+   "name": "GEO-kst_turbine_arm.R2",
+   "parent": "HLP-kst_j_elbow.R",
+   "tris": 1152,
+   "pivot": [
+    -0.3851,
+    0.99808,
+    -0.0558
+   ],
+   "kind": "turbine",
+   "material": "Inconel 718 / Ti casing",
+   "mass_kg": 4.01,
+   "part_no": "HX01-TB-R2",
+   "thrust_N": 425.0
+  },
+  {
+   "name": "GEO-kst_pod_band.R0",
+   "parent": "HLP-kst_j_elbow.R",
+   "tris": 108,
+   "pivot": [
+    -0.36061,
+    1.11332,
+    -0.00248
+   ],
+   "kind": "frame",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.12
+  },
+  {
+   "name": "GEO-kst_pod_band.R1",
+   "parent": "HLP-kst_j_elbow.R",
+   "tris": 108,
+   "pivot": [
+    -0.40077,
+    0.92435,
+    0.04928
+   ],
+   "kind": "frame",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.12
+  },
+  {
+   "name": "GEO-kst_pod_spine.R",
+   "parent": "HLP-kst_j_elbow.R",
+   "tris": 512,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.25
+  },
+  {
+   "name": "GEO-kst_act_wrist.R",
+   "parent": "HLP-kst_j_elbow.R",
+   "tris": 1152,
+   "pivot": [
+    -0.2956,
+    0.9141,
+    0.0461
+   ],
+   "kind": "actuator",
+   "cls": "S",
+   "mass_kg": 0.45,
+   "part_no": "HX01-S-WRIST.R",
+   "material": "hollow-shaft torque motor"
+  },
+  {
+   "name": "GEO-kst_grip.R",
+   "parent": "HLP-kst_j_wrist.R",
+   "tris": 76,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "control",
+   "material": "rubber over Al",
+   "part_no": "HX01-GR-001.R"
+  },
+  {
+   "name": "GEO-kst_grip_arm.R",
+   "parent": "HLP-kst_j_wrist.R",
+   "tris": 512,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V"
+  },
+  {
+   "name": "GEO-kst_battery",
+   "parent": "HLP-kst_backpack",
+   "tris": 108,
+   "pivot": [
+    0.0,
+    1.3525,
+    -0.22
+   ],
+   "part_no": "HX01-PW-001",
+   "kind": "battery",
+   "material": "Li-ion 1.2 kWh, Al case",
+   "mass_kg": 5.45
+  },
+  {
+   "name": "GEO-kst_tank.L",
+   "parent": "HLP-kst_backpack",
+   "tris": 1536,
+   "pivot": [
+    0.176,
+    1.3425,
+    -0.3
+   ],
+   "kind": "tank",
+   "material": "Al 6061 liner + CFRP overwrap",
+   "volume_L": 8.0,
+   "part_no": "HX01-FU-001",
+   "mass_kg": 0.9
+  },
+  {
+   "name": "GEO-kst_pack_rail.L",
+   "parent": "HLP-kst_backpack",
+   "tris": 76,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-FR-021",
+   "mass_kg": 0.2
+  },
+  {
+   "name": "GEO-kst_tank.R",
+   "parent": "HLP-kst_backpack",
+   "tris": 1536,
+   "pivot": [
+    -0.176,
+    1.3425,
+    -0.3
+   ],
+   "kind": "tank",
+   "material": "Al 6061 liner + CFRP overwrap",
+   "volume_L": 8.0,
+   "part_no": "HX01-FU-002",
+   "mass_kg": 0.9
+  },
+  {
+   "name": "GEO-kst_pack_rail.R",
+   "parent": "HLP-kst_backpack",
+   "tris": 76,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-FR-022",
+   "mass_kg": 0.2
+  },
+  {
+   "name": "GEO-kst_pack_cross_1140",
+   "parent": "HLP-kst_backpack",
+   "tris": 512,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.15
+  },
+  {
+   "name": "GEO-kst_pack_cross_1575",
+   "parent": "HLP-kst_backpack",
+   "tris": 512,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "link",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.15
+  },
+  {
+   "name": "GEO-kst_gimbal_ring",
+   "parent": "HLP-kst_backpack",
+   "tris": 1536,
+   "pivot": [
+    0.0,
+    1.3625,
+    -0.345
+   ],
+   "kind": "gimbal",
+   "material": "Ti-6Al-4V",
+   "mass_kg": 0.3
+  },
+  {
+   "name": "GEO-kst_turbine_back",
+   "parent": "HLP-kst_j_gimbal_back",
+   "tris": 1152,
+   "pivot": [
+    0.0,
+    1.3625,
+    -0.345
+   ],
+   "kind": "turbine",
+   "material": "Inconel 718 / Ti casing",
+   "mass_kg": 4.01,
+   "part_no": "HX01-TB-05",
+   "thrust_N": 425.0
+  },
+  {
+   "name": "GEO-kst_heat_shield_back",
+   "parent": "HLP-kst_backpack",
+   "tris": 188,
+   "pivot": [
+    0.0,
+    1.1025,
+    -0.245
+   ],
+   "kind": "heat_shield",
+   "material": "Inconel 718 + aerogel blanket"
+  },
+  {
+   "name": "GEO-kst_helmet",
+   "parent": "HLP-kst_j_neck",
+   "tris": 6656,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "helmet",
+   "material": "CFRP shell, polycarbonate visor",
+   "part_no": "HX01-HM-001",
+   "mass_kg": 1.6
+  },
+  {
+   "name": "GEO-kst_sensor_pod",
+   "parent": "HLP-kst_j_sensor_head",
+   "tris": 108,
+   "pivot": [
+    0.0,
+    1.893,
+    0.04
+   ],
+   "part_no": "HX01-SN-001",
+   "kind": "sensor",
+   "material": "stereo camera + lidar"
+  },
+  {
+   "name": "GEO-kst_collar",
+   "parent": "HLP-kst_j_neck",
+   "tris": 1152,
+   "pivot": [
+    0.0,
+    1.5737,
+    -0.01
+   ],
+   "kind": "frame",
+   "material": "Ti-6Al-4V",
+   "part_no": "HX01-HM-010"
+  },
+  {
+   "name": "GEO-kst_pilot_pelvis",
+   "parent": "HLP-kst_j_pelvis",
+   "tris": 320,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_torso",
+   "parent": "HLP-kst_j_trunk_rot",
+   "tris": 608,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_neck",
+   "parent": "HLP-kst_j_neck",
+   "tris": 192,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_head",
+   "parent": "HLP-kst_j_neck",
+   "tris": 960,
+   "pivot": [
+    0.0,
+    1.69,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "balaclava (thin aramid knit)"
+  },
+  {
+   "name": "GEO-kst_pilot_thigh.L",
+   "parent": "HLP-kst_j_hip_rot.L",
+   "tris": 576,
+   "pivot": [
+    -0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_shank.L",
+   "parent": "HLP-kst_j_knee.L",
+   "tris": 704,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_boot.L",
+   "parent": "HLP-kst_j_ankle_roll.L",
+   "tris": 960,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_upper_arm.L",
+   "parent": "HLP-kst_j_shoulder_rot.L",
+   "tris": 448,
+   "pivot": [
+    0.0,
+    -0.0,
+    0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_forearm.L",
+   "parent": "HLP-kst_j_elbow.L",
+   "tris": 448,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_glove.L",
+   "parent": "HLP-kst_j_wrist.L",
+   "tris": 320,
+   "pivot": [
+    0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_thigh.R",
+   "parent": "HLP-kst_j_hip_rot.R",
+   "tris": 576,
+   "pivot": [
+    0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_shank.R",
+   "parent": "HLP-kst_j_knee.R",
+   "tris": 704,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_boot.R",
+   "parent": "HLP-kst_j_ankle_roll.R",
+   "tris": 960,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_upper_arm.R",
+   "parent": "HLP-kst_j_shoulder_rot.R",
+   "tris": 448,
+   "pivot": [
+    0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_forearm.R",
+   "parent": "HLP-kst_j_elbow.R",
+   "tris": 448,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_pilot_glove.R",
+   "parent": "HLP-kst_j_wrist.R",
+   "tris": 320,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "pilot",
+   "material": "Nomex/aramid flight suit"
+  },
+  {
+   "name": "GEO-kst_armor_chest",
+   "parent": "HLP-kst_j_trunk_rot",
+   "tris": 272,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-01",
+   "mass_kg": 0.7
+  },
+  {
+   "name": "GEO-kst_armor_back_cowl",
+   "parent": "HLP-kst_backpack",
+   "tris": 204,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-02",
+   "mass_kg": 0.45
+  },
+  {
+   "name": "GEO-kst_armor_thigh.L",
+   "parent": "HLP-kst_j_hip_rot.L",
+   "tris": 332,
+   "pivot": [
+    -0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-TH.L",
+   "mass_kg": 0.35
+  },
+  {
+   "name": "GEO-kst_armor_shin.L",
+   "parent": "HLP-kst_j_knee.L",
+   "tris": 332,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-SH.L",
+   "mass_kg": 0.3
+  },
+  {
+   "name": "GEO-kst_armor_hip.L",
+   "parent": "HLP-kst_j_pelvis",
+   "tris": 156,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-HP.L",
+   "mass_kg": 0.2
+  },
+  {
+   "name": "GEO-kst_armor_upper_arm.L",
+   "parent": "HLP-kst_j_shoulder_rot.L",
+   "tris": 332,
+   "pivot": [
+    0.0,
+    -0.0,
+    0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-UA.L",
+   "mass_kg": 0.18
+  },
+  {
+   "name": "GEO-kst_armor_forearm.L",
+   "parent": "HLP-kst_j_elbow.L",
+   "tris": 204,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-FA.L",
+   "mass_kg": 0.15
+  },
+  {
+   "name": "GEO-kst_armor_shoulder_cap.L",
+   "parent": "HLP-kst_j_shoulder_flex.L",
+   "tris": 332,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-SC.L",
+   "mass_kg": 0.22
+  },
+  {
+   "name": "GEO-kst_armor_thigh.R",
+   "parent": "HLP-kst_j_hip_rot.R",
+   "tris": 332,
+   "pivot": [
+    0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-TH.R",
+   "mass_kg": 0.35
+  },
+  {
+   "name": "GEO-kst_armor_shin.R",
+   "parent": "HLP-kst_j_knee.R",
+   "tris": 332,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-SH.R",
+   "mass_kg": 0.3
+  },
+  {
+   "name": "GEO-kst_armor_hip.R",
+   "parent": "HLP-kst_j_pelvis",
+   "tris": 156,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-HP.R",
+   "mass_kg": 0.2
+  },
+  {
+   "name": "GEO-kst_armor_upper_arm.R",
+   "parent": "HLP-kst_j_shoulder_rot.R",
+   "tris": 332,
+   "pivot": [
+    0.0,
+    -0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-UA.R",
+   "mass_kg": 0.18
+  },
+  {
+   "name": "GEO-kst_armor_forearm.R",
+   "parent": "HLP-kst_j_elbow.R",
+   "tris": 204,
+   "pivot": [
+    0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-FA.R",
+   "mass_kg": 0.15
+  },
+  {
+   "name": "GEO-kst_armor_shoulder_cap.R",
+   "parent": "HLP-kst_j_shoulder_flex.R",
+   "tris": 332,
+   "pivot": [
+    -0.0,
+    0.0,
+    -0.0
+   ],
+   "kind": "armor",
+   "material": "CFRP [0/±45/90] + aramid",
+   "part_no": "HX01-AR-SC.R",
+   "mass_kg": 0.22
+  },
+  {
+   "name": "GEO-kst_stand_base",
+   "parent": "HLP-kst_stand",
+   "tris": 108,
+   "pivot": [
+    0.0,
+    0.0175,
+    -0.62
+   ],
+   "part_no": "HX01-GS-001",
+   "kind": "stand",
+   "material": "S355 steel, powder coat"
+  },
+  {
+   "name": "GEO-kst_stand_stripe1",
+   "parent": "HLP-kst_stand",
+   "tris": 108,
+   "pivot": [
+    0.595,
+    0.0185,
+    -0.62
+   ],
+   "kind": "stand"
+  },
+  {
+   "name": "GEO-kst_stand_post1",
+   "parent": "HLP-kst_stand",
+   "tris": 108,
+   "pivot": [
+    0.46,
+    1.11,
+    -0.62
+   ],
+   "kind": "stand",
+   "material": "S355 box section 80×80×5"
+  },
+  {
+   "name": "GEO-kst_stand_arm1",
+   "parent": "HLP-kst_stand",
+   "tris": 108,
+   "pivot": [
+    0.46,
+    1.4225,
+    -0.4675
+   ],
+   "kind": "stand"
+  },
+  {
+   "name": "GEO-kst_stand_clampbar1",
+   "parent": "HLP-kst_stand",
+   "tris": 108,
+   "pivot": [
+    0.375,
+    1.4225,
+    -0.3
+   ],
+   "kind": "stand"
+  },
+  {
+   "name": "GEO-kst_clamp_pin.L",
+   "parent": "HLP-kst_stand",
+   "tris": 92,
+   "pivot": [
+    0.285,
+    1.4225,
+    -0.3
+   ],
+   "kind": "clamp_pin",
+   "material": "17-4PH steel, hydraulic",
+   "part_no": "HX01-GS-PIN.L"
+  },
+  {
+   "name": "GEO-kst_stand_stripe-1",
+   "parent": "HLP-kst_stand",
+   "tris": 108,
+   "pivot": [
+    -0.595,
+    0.0185,
+    -0.62
+   ],
+   "kind": "stand"
+  },
+  {
+   "name": "GEO-kst_stand_post-1",
+   "parent": "HLP-kst_stand",
+   "tris": 108,
+   "pivot": [
+    -0.46,
+    1.11,
+    -0.62
+   ],
+   "kind": "stand",
+   "material": "S355 box section 80×80×5"
+  },
+  {
+   "name": "GEO-kst_stand_arm-1",
+   "parent": "HLP-kst_stand",
+   "tris": 108,
+   "pivot": [
+    -0.46,
+    1.4225,
+    -0.4675
+   ],
+   "kind": "stand"
+  },
+  {
+   "name": "GEO-kst_stand_clampbar-1",
+   "parent": "HLP-kst_stand",
+   "tris": 108,
+   "pivot": [
+    -0.375,
+    1.4225,
+    -0.3
+   ],
+   "kind": "stand"
+  },
+  {
+   "name": "GEO-kst_clamp_pin.R",
+   "parent": "HLP-kst_stand",
+   "tris": 92,
+   "pivot": [
+    -0.285,
+    1.4225,
+    -0.3
+   ],
+   "kind": "clamp_pin",
+   "material": "17-4PH steel, hydraulic",
+   "part_no": "HX01-GS-PIN.R"
+  },
+  {
+   "name": "GEO-kst_stand_top",
+   "parent": "HLP-kst_stand",
+   "tris": 108,
+   "pivot": [
+    0.0,
+    2.15,
+    -0.62
+   ],
+   "kind": "stand"
+  }
+ ],
+ "joints": [
+  {
+   "name": "HLP-kst_j_pelvis",
+   "parent": "HLP-kst_root",
+   "pivot": [
+    0.0,
+    1.0425,
+    -0.0
+   ],
+   "axis_world": [
+    0.0,
+    1.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_trunk_rot",
+   "parent": "HLP-kst_j_pelvis",
+   "pivot": [
+    0.0,
+    1.13,
+    -0.165
+   ],
+   "axis_world": [
+    0.0,
+    1.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_neck",
+   "parent": "HLP-kst_j_trunk_rot",
+   "pivot": [
+    0.0,
+    1.5437,
+    -0.125
+   ],
+   "axis_world": [
+    0.0,
+    1.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_hip_abd.L",
+   "parent": "HLP-kst_j_pelvis",
+   "pivot": [
+    0.135,
+    1.0258,
+    -0.15
+   ],
+   "axis_world": [
+    -0.0,
+    0.0,
+    -1.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_hip_flex.L",
+   "parent": "HLP-kst_j_hip_abd.L",
+   "pivot": [
+    0.229,
+    0.9708,
+    -0.0
+   ],
+   "axis_world": [
+    1.0,
+    0.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_hip_rot.L",
+   "parent": "HLP-kst_j_hip_flex.L",
+   "pivot": [
+    0.213,
+    0.8,
+    -0.002
+   ],
+   "axis_world": [
+    -0.09324,
+    -0.99558,
+    -0.01165
+   ]
+  },
+  {
+   "name": "HLP-kst_j_knee.L",
+   "parent": "HLP-kst_j_hip_rot.L",
+   "pivot": [
+    0.189,
+    0.5437,
+    -0.005
+   ],
+   "axis_world": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_ankle_pitch.L",
+   "parent": "HLP-kst_j_knee.L",
+   "pivot": [
+    0.166,
+    0.1133,
+    -0.0
+   ],
+   "axis_world": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_ankle_roll.L",
+   "parent": "HLP-kst_j_ankle_pitch.L",
+   "pivot": [
+    0.09,
+    0.078,
+    -0.095
+   ],
+   "axis_world": [
+    0.0,
+    0.0,
+    -1.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_hip_abd.R",
+   "parent": "HLP-kst_j_pelvis",
+   "pivot": [
+    -0.135,
+    1.0258,
+    -0.15
+   ],
+   "axis_world": [
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_hip_flex.R",
+   "parent": "HLP-kst_j_hip_abd.R",
+   "pivot": [
+    -0.229,
+    0.9708,
+    0.0
+   ],
+   "axis_world": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_hip_rot.R",
+   "parent": "HLP-kst_j_hip_flex.R",
+   "pivot": [
+    -0.213,
+    0.8,
+    -0.002
+   ],
+   "axis_world": [
+    0.09324,
+    -0.99558,
+    -0.01166
+   ]
+  },
+  {
+   "name": "HLP-kst_j_knee.R",
+   "parent": "HLP-kst_j_hip_rot.R",
+   "pivot": [
+    -0.189,
+    0.5437,
+    -0.005
+   ],
+   "axis_world": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_ankle_pitch.R",
+   "parent": "HLP-kst_j_knee.R",
+   "pivot": [
+    -0.166,
+    0.1133,
+    -0.0
+   ],
+   "axis_world": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_ankle_roll.R",
+   "parent": "HLP-kst_j_ankle_pitch.R",
+   "pivot": [
+    -0.09,
+    0.078,
+    -0.095
+   ],
+   "axis_world": [
+    -0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_shoulder_abd.L",
+   "parent": "HLP-kst_j_trunk_rot",
+   "pivot": [
+    0.185,
+    1.4345,
+    -0.155
+   ],
+   "axis_world": [
+    -0.0,
+    0.0,
+    -1.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_shoulder_flex.L",
+   "parent": "HLP-kst_j_shoulder_abd.L",
+   "pivot": [
+    0.294,
+    1.4345,
+    -0.02
+   ],
+   "axis_world": [
+    1.0,
+    0.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_shoulder_rot.L",
+   "parent": "HLP-kst_j_shoulder_flex.L",
+   "pivot": [
+    0.2099,
+    1.3171,
+    -0.02
+   ],
+   "axis_world": [
+    0.2079,
+    -0.97815,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_elbow.L",
+   "parent": "HLP-kst_j_shoulder_rot.L",
+   "pivot": [
+    0.3193,
+    1.1714,
+    -0.02
+   ],
+   "axis_world": [
+    0.97815,
+    0.20791,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_wrist.L",
+   "parent": "HLP-kst_j_elbow.L",
+   "pivot": [
+    0.2956,
+    0.9141,
+    0.0461
+   ],
+   "axis_world": [
+    0.20083,
+    -0.94482,
+    0.25881
+   ]
+  },
+  {
+   "name": "HLP-kst_j_shoulder_abd.R",
+   "parent": "HLP-kst_j_trunk_rot",
+   "pivot": [
+    -0.185,
+    1.4345,
+    -0.155
+   ],
+   "axis_world": [
+    0.0,
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_shoulder_flex.R",
+   "parent": "HLP-kst_j_shoulder_abd.R",
+   "pivot": [
+    -0.294,
+    1.4345,
+    -0.02
+   ],
+   "axis_world": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_shoulder_rot.R",
+   "parent": "HLP-kst_j_shoulder_flex.R",
+   "pivot": [
+    -0.2099,
+    1.3171,
+    -0.02
+   ],
+   "axis_world": [
+    -0.2079,
+    -0.97815,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_elbow.R",
+   "parent": "HLP-kst_j_shoulder_rot.R",
+   "pivot": [
+    -0.3193,
+    1.1714,
+    -0.02
+   ],
+   "axis_world": [
+    0.97815,
+    -0.20791,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_wrist.R",
+   "parent": "HLP-kst_j_elbow.R",
+   "pivot": [
+    -0.2956,
+    0.9141,
+    0.0461
+   ],
+   "axis_world": [
+    -0.20082,
+    -0.94482,
+    0.25881
+   ]
+  },
+  {
+   "name": "HLP-kst_j_gimbal_back",
+   "parent": "HLP-kst_backpack",
+   "pivot": [
+    0.0,
+    1.3625,
+    -0.345
+   ],
+   "axis_world": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_j_sensor_head",
+   "parent": "HLP-kst_j_neck",
+   "pivot": [
+    0.0,
+    1.875,
+    0.03
+   ],
+   "axis_world": [
+    0.0,
+    1.0,
+    -0.0
+   ]
+  }
+ ],
+ "sockets": [
+  {
+   "name": "HLP-kst_socket_bolts_act_trunk_rot",
+   "parent": "GEO-kst_act_trunk_rot",
+   "pivot": [
+    0.0,
+    1.161,
+    -0.165
+   ],
+   "socket": "bolts_act_trunk_rot",
+   "size": "M4",
+   "count": 10,
+   "pcd_mm": 85,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_trunk_rot",
+   "parent": "GEO-kst_act_trunk_rot",
+   "pivot": [
+    0.0,
+    1.13,
+    -0.165
+   ],
+   "socket": "drive_trunk_rot",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_neck",
+   "parent": "GEO-kst_act_neck",
+   "pivot": [
+    0.0,
+    1.5687,
+    -0.125
+   ],
+   "socket": "bolts_act_neck",
+   "size": "M3",
+   "count": 8,
+   "pcd_mm": 66,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_neck",
+   "parent": "GEO-kst_act_neck",
+   "pivot": [
+    0.0,
+    1.5437,
+    -0.125
+   ],
+   "socket": "drive_neck",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_hip_abd.L",
+   "parent": "GEO-kst_act_hip_abd.L",
+   "pivot": [
+    0.135,
+    1.0258,
+    -0.189
+   ],
+   "socket": "bolts_act_hip_abd.L",
+   "size": "M5",
+   "count": 12,
+   "pcd_mm": 111,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_hip_abd.L",
+   "parent": "GEO-kst_act_hip_abd.L",
+   "pivot": [
+    0.135,
+    1.0258,
+    -0.15
+   ],
+   "socket": "drive_hip_abd.L",
+   "kind": "drive",
+   "reducer": "planetary",
+   "axis_rot": [
+    0.0,
+    1.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_hip_flex.L",
+   "parent": "GEO-kst_act_hip_flex.L",
+   "pivot": [
+    0.268,
+    0.9708,
+    -0.0
+   ],
+   "socket": "bolts_act_hip_flex.L",
+   "size": "M5",
+   "count": 12,
+   "pcd_mm": 111,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_hip_flex.L",
+   "parent": "GEO-kst_act_hip_flex.L",
+   "pivot": [
+    0.229,
+    0.9708,
+    -0.0
+   ],
+   "socket": "drive_hip_flex.L",
+   "kind": "drive",
+   "reducer": "planetary",
+   "axis_rot": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_hip_rot.L",
+   "parent": "GEO-kst_act_hip_rot.L",
+   "pivot": [
+    0.21011,
+    0.76914,
+    -0.00236
+   ],
+   "socket": "bolts_act_hip_rot.L",
+   "size": "M4",
+   "count": 10,
+   "pcd_mm": 85,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_hip_rot.L",
+   "parent": "GEO-kst_act_hip_rot.L",
+   "pivot": [
+    0.213,
+    0.8,
+    -0.002
+   ],
+   "socket": "drive_hip_rot.L",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    -0.09324051439762115,
+    0.011655062437057495,
+    -0.9955754280090332
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_knee.L",
+   "parent": "GEO-kst_act_knee.L",
+   "pivot": [
+    0.228,
+    0.5437,
+    -0.005
+   ],
+   "socket": "bolts_act_knee.L",
+   "size": "M5",
+   "count": 12,
+   "pcd_mm": 111,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_knee.L",
+   "parent": "GEO-kst_act_knee.L",
+   "pivot": [
+    0.189,
+    0.5437,
+    -0.005
+   ],
+   "socket": "drive_knee.L",
+   "kind": "drive",
+   "reducer": "planetary",
+   "axis_rot": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_ankle_pitch.L",
+   "parent": "GEO-kst_act_ankle_pitch.L",
+   "pivot": [
+    0.197,
+    0.1133,
+    0.0
+   ],
+   "socket": "bolts_act_ankle_pitch.L",
+   "size": "M4",
+   "count": 10,
+   "pcd_mm": 85,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_ankle_pitch.L",
+   "parent": "GEO-kst_act_ankle_pitch.L",
+   "pivot": [
+    0.166,
+    0.1133,
+    0.0
+   ],
+   "socket": "drive_ankle_pitch.L",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_ankle_roll.L",
+   "parent": "GEO-kst_act_ankle_roll.L",
+   "pivot": [
+    0.09,
+    0.078,
+    -0.12
+   ],
+   "socket": "bolts_act_ankle_roll.L",
+   "size": "M3",
+   "count": 8,
+   "pcd_mm": 66,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_ankle_roll.L",
+   "parent": "GEO-kst_act_ankle_roll.L",
+   "pivot": [
+    0.09,
+    0.078,
+    -0.095
+   ],
+   "socket": "drive_ankle_roll.L",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    0.0,
+    1.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_hip_abd.R",
+   "parent": "GEO-kst_act_hip_abd.R",
+   "pivot": [
+    -0.135,
+    1.0258,
+    -0.189
+   ],
+   "socket": "bolts_act_hip_abd.R",
+   "size": "M5",
+   "count": 12,
+   "pcd_mm": 111,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_hip_abd.R",
+   "parent": "GEO-kst_act_hip_abd.R",
+   "pivot": [
+    -0.135,
+    1.0258,
+    -0.15
+   ],
+   "socket": "drive_hip_abd.R",
+   "kind": "drive",
+   "reducer": "planetary",
+   "axis_rot": [
+    0.0,
+    -1.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_hip_flex.R",
+   "parent": "GEO-kst_act_hip_flex.R",
+   "pivot": [
+    -0.268,
+    0.9708,
+    0.0
+   ],
+   "socket": "bolts_act_hip_flex.R",
+   "size": "M5",
+   "count": 12,
+   "pcd_mm": 111,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_hip_flex.R",
+   "parent": "GEO-kst_act_hip_flex.R",
+   "pivot": [
+    -0.229,
+    0.9708,
+    0.0
+   ],
+   "socket": "drive_hip_flex.R",
+   "kind": "drive",
+   "reducer": "planetary",
+   "axis_rot": [
+    1.0,
+    -0.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_hip_rot.R",
+   "parent": "GEO-kst_act_hip_rot.R",
+   "pivot": [
+    -0.21011,
+    0.76914,
+    -0.00236
+   ],
+   "socket": "bolts_act_hip_rot.R",
+   "size": "M4",
+   "count": 10,
+   "pcd_mm": 85,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_hip_rot.R",
+   "parent": "GEO-kst_act_hip_rot.R",
+   "pivot": [
+    -0.213,
+    0.8,
+    -0.002
+   ],
+   "socket": "drive_hip_rot.R",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    0.09324051439762115,
+    0.011655062437057495,
+    -0.9955754280090332
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_knee.R",
+   "parent": "GEO-kst_act_knee.R",
+   "pivot": [
+    -0.228,
+    0.5437,
+    -0.005
+   ],
+   "socket": "bolts_act_knee.R",
+   "size": "M5",
+   "count": 12,
+   "pcd_mm": 111,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_knee.R",
+   "parent": "GEO-kst_act_knee.R",
+   "pivot": [
+    -0.189,
+    0.5437,
+    -0.005
+   ],
+   "socket": "drive_knee.R",
+   "kind": "drive",
+   "reducer": "planetary",
+   "axis_rot": [
+    1.0,
+    -0.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_ankle_pitch.R",
+   "parent": "GEO-kst_act_ankle_pitch.R",
+   "pivot": [
+    -0.197,
+    0.1133,
+    0.0
+   ],
+   "socket": "bolts_act_ankle_pitch.R",
+   "size": "M4",
+   "count": 10,
+   "pcd_mm": 85,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_ankle_pitch.R",
+   "parent": "GEO-kst_act_ankle_pitch.R",
+   "pivot": [
+    -0.166,
+    0.1133,
+    -0.0
+   ],
+   "socket": "drive_ankle_pitch.R",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    1.0,
+    -0.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_ankle_roll.R",
+   "parent": "GEO-kst_act_ankle_roll.R",
+   "pivot": [
+    -0.09,
+    0.078,
+    -0.12
+   ],
+   "socket": "bolts_act_ankle_roll.R",
+   "size": "M3",
+   "count": 8,
+   "pcd_mm": 66,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_ankle_roll.R",
+   "parent": "GEO-kst_act_ankle_roll.R",
+   "pivot": [
+    -0.09,
+    0.078,
+    -0.095
+   ],
+   "socket": "drive_ankle_roll.R",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    0.0,
+    -1.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_shoulder_abd.L",
+   "parent": "GEO-kst_act_shoulder_abd.L",
+   "pivot": [
+    0.185,
+    1.4345,
+    -0.194
+   ],
+   "socket": "bolts_act_shoulder_abd.L",
+   "size": "M5",
+   "count": 12,
+   "pcd_mm": 111,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_shoulder_abd.L",
+   "parent": "GEO-kst_act_shoulder_abd.L",
+   "pivot": [
+    0.185,
+    1.4345,
+    -0.155
+   ],
+   "socket": "drive_shoulder_abd.L",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    0.0,
+    1.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_shoulder_flex.L",
+   "parent": "GEO-kst_act_shoulder_flex.L",
+   "pivot": [
+    0.333,
+    1.4345,
+    -0.02
+   ],
+   "socket": "bolts_act_shoulder_flex.L",
+   "size": "M5",
+   "count": 12,
+   "pcd_mm": 111,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_shoulder_flex.L",
+   "parent": "GEO-kst_act_shoulder_flex.L",
+   "pivot": [
+    0.294,
+    1.4345,
+    -0.02
+   ],
+   "socket": "drive_shoulder_flex.L",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    1.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_drive_shoulder_rot.L",
+   "parent": "GEO-kst_act_shoulder_rot.L",
+   "pivot": [
+    0.2099,
+    1.3171,
+    -0.02
+   ],
+   "socket": "drive_shoulder_rot.L",
+   "kind": "drive",
+   "reducer": "arc_rail"
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_elbow.L",
+   "parent": "GEO-kst_act_elbow.L",
+   "pivot": [
+    0.34962,
+    1.17785,
+    -0.02
+   ],
+   "socket": "bolts_act_elbow.L",
+   "size": "M4",
+   "count": 10,
+   "pcd_mm": 85,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_elbow.L",
+   "parent": "GEO-kst_act_elbow.L",
+   "pivot": [
+    0.3193,
+    1.1714,
+    -0.02
+   ],
+   "socket": "drive_elbow.L",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    0.9781476259231567,
+    0.0,
+    0.2079116851091385
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_rotor_turbine_arm.L1",
+   "parent": "GEO-kst_turbine_arm.L1",
+   "pivot": [
+    0.37628,
+    1.03959,
+    0.10261
+   ],
+   "socket": "rotor_turbine_arm.L1",
+   "kind": "turbine_rotor",
+   "rows": {
+    "compressor_main": 7,
+    "compressor_splitter": 7,
+    "diffuser_vanes": 11,
+    "ngv_vanes": 13,
+    "turbine_blades": 23
+   }
+  },
+  {
+   "name": "HLP-kst_socket_rotor_turbine_arm.L2",
+   "parent": "GEO-kst_turbine_arm.L2",
+   "pivot": [
+    0.3851,
+    0.99808,
+    -0.0558
+   ],
+   "socket": "rotor_turbine_arm.L2",
+   "kind": "turbine_rotor",
+   "rows": {
+    "compressor_main": 7,
+    "compressor_splitter": 7,
+    "diffuser_vanes": 11,
+    "ngv_vanes": 13,
+    "turbine_blades": 23
+   }
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_shoulder_abd.R",
+   "parent": "GEO-kst_act_shoulder_abd.R",
+   "pivot": [
+    -0.185,
+    1.4345,
+    -0.194
+   ],
+   "socket": "bolts_act_shoulder_abd.R",
+   "size": "M5",
+   "count": 12,
+   "pcd_mm": 111,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_shoulder_abd.R",
+   "parent": "GEO-kst_act_shoulder_abd.R",
+   "pivot": [
+    -0.185,
+    1.4345,
+    -0.155
+   ],
+   "socket": "drive_shoulder_abd.R",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    0.0,
+    -1.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_shoulder_flex.R",
+   "parent": "GEO-kst_act_shoulder_flex.R",
+   "pivot": [
+    -0.333,
+    1.4345,
+    -0.02
+   ],
+   "socket": "bolts_act_shoulder_flex.R",
+   "size": "M5",
+   "count": 12,
+   "pcd_mm": 111,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_shoulder_flex.R",
+   "parent": "GEO-kst_act_shoulder_flex.R",
+   "pivot": [
+    -0.294,
+    1.4345,
+    -0.02
+   ],
+   "socket": "drive_shoulder_flex.R",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    1.0,
+    -0.0,
+    -0.0
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_drive_shoulder_rot.R",
+   "parent": "GEO-kst_act_shoulder_rot.R",
+   "pivot": [
+    -0.2099,
+    1.3171,
+    -0.02
+   ],
+   "socket": "drive_shoulder_rot.R",
+   "kind": "drive",
+   "reducer": "arc_rail"
+  },
+  {
+   "name": "HLP-kst_socket_bolts_act_elbow.R",
+   "parent": "GEO-kst_act_elbow.R",
+   "pivot": [
+    -0.34962,
+    1.17785,
+    -0.02
+   ],
+   "socket": "bolts_act_elbow.R",
+   "size": "M4",
+   "count": 10,
+   "pcd_mm": 85,
+   "kind": "bolt_circle"
+  },
+  {
+   "name": "HLP-kst_socket_drive_elbow.R",
+   "parent": "GEO-kst_act_elbow.R",
+   "pivot": [
+    -0.3193,
+    1.1714,
+    -0.02
+   ],
+   "socket": "drive_elbow.R",
+   "kind": "drive",
+   "reducer": "strain_wave",
+   "axis_rot": [
+    0.9781476259231567,
+    -0.0,
+    -0.2079116851091385
+   ]
+  },
+  {
+   "name": "HLP-kst_socket_rotor_turbine_arm.R1",
+   "parent": "GEO-kst_turbine_arm.R1",
+   "pivot": [
+    -0.37628,
+    1.03959,
+    0.10261
+   ],
+   "socket": "rotor_turbine_arm.R1",
+   "kind": "turbine_rotor",
+   "rows": {
+    "compressor_main": 7,
+    "compressor_splitter": 7,
+    "diffuser_vanes": 11,
+    "ngv_vanes": 13,
+    "turbine_blades": 23
+   }
+  },
+  {
+   "name": "HLP-kst_socket_rotor_turbine_arm.R2",
+   "parent": "GEO-kst_turbine_arm.R2",
+   "pivot": [
+    -0.3851,
+    0.99808,
+    -0.0558
+   ],
+   "socket": "rotor_turbine_arm.R2",
+   "kind": "turbine_rotor",
+   "rows": {
+    "compressor_main": 7,
+    "compressor_splitter": 7,
+    "diffuser_vanes": 11,
+    "ngv_vanes": 13,
+    "turbine_blades": 23
+   }
+  },
+  {
+   "name": "HLP-kst_socket_tank.L",
+   "parent": "GEO-kst_tank.L",
+   "pivot": [
+    0.176,
+    1.3425,
+    -0.3
+   ],
+   "socket": "tank.L",
+   "kind": "tank"
+  },
+  {
+   "name": "HLP-kst_socket_tank.R",
+   "parent": "GEO-kst_tank.R",
+   "pivot": [
+    -0.176,
+    1.3425,
+    -0.3
+   ],
+   "socket": "tank.R",
+   "kind": "tank"
+  },
+  {
+   "name": "HLP-kst_socket_rotor_turbine_back",
+   "parent": "GEO-kst_turbine_back",
+   "pivot": [
+    0.0,
+    1.3625,
+    -0.345
+   ],
+   "socket": "rotor_turbine_back",
+   "kind": "turbine_rotor",
+   "rows": {
+    "compressor_main": 7,
+    "compressor_splitter": 7,
+    "diffuser_vanes": 11,
+    "ngv_vanes": 13,
+    "turbine_blades": 23
+   }
+  }
+ ],
+ "report": {
+  "stage": "blockout",
+  "objects": 199,
+  "tris": 86136,
+  "joints": 27,
+  "actuators": 24,
+  "sockets": 49,
+  "envelope_mm": {
+   "width_x": 960,
+   "depth_y": 672,
+   "height_z": 1909
+  },
+  "actuator_count_check": true
+ }
+}

@@ -5,3 +5,5 @@ __pycache__/
 *.blend1
 .DS_Store
 .venv-blender/
+model/__pycache__/
+*.blend1

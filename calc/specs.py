@@ -36,17 +36,25 @@ blades = put("compressor_blades", 7, "", "design", "main blades, radial impeller
 # ---------------------------------------------------------------- mass budget
 battery_kWh = put("battery_energy", 1.2, "kWh", "design")
 pack_Whkg = put("battery_pack_specific_energy", 220, "Wh/kg", "design")
-# 24 actuators (24 DoF, cf. Sarcos Guardian XO), three size classes
+# 24 actuators (24 DoF, cf. Sarcos Guardian XO), three size classes.
+# Real-world anchor for torque density: Unitree M107 joint motor (H1 humanoid), 360 N·m peak, 1.9 kg
+# -> 189 N·m/kg peak. Class masses below are chosen to stay BELOW that state of the art.
+put("ref_m107_peak_torque", 360, "N·m", "spec", "Unitree M107 (H1 knee), vendor brochure")
+put("ref_m107_mass", 1.9, "kg", "spec", "Unitree M107")
+put("ref_m107_torque_density", round(360 / 1.9), "N·m/kg", "calc")
 ACT = {
-    # class: (count, unit mass kg, joints)
-    "L": (10, 1.10, "hip flex ×2, hip abd ×2, knee ×2, shoulder flex ×2, shoulder abd ×2"),
-    "M": (9, 0.70, "hip rot ×2, ankle pitch ×2, shoulder rot ×2, elbow ×2, trunk rot ×1"),
-    "S": (5, 0.45, "ankle roll ×2, wrist ×2, neck ×1"),
+    # class: (count, unit mass kg, joints, housing OD mm, housing width mm, reducer)
+    "L": (10, 1.40, "hip flex ×2, hip abd ×2, knee ×2, shoulder flex ×2, shoulder abd ×2", 135, 78,
+          "hip/knee: 1-stage planetary 9:1 (QDD, backdrivable) · shoulder: strain-wave 100:1 (holds thrust load)"),
+    "M": (9, 0.70, "hip rot ×2, ankle pitch ×2, shoulder rot ×2, elbow ×2, trunk rot ×1", 104, 62,
+          "strain-wave 80:1"),
+    "S": (5, 0.45, "ankle roll ×2, wrist ×2, neck (helmet yaw support) ×1", 80, 50, "strain-wave 50:1"),
 }
-n_act = sum(c for c, _, _ in ACT.values())
+n_act = sum(v[0] for v in ACT.values())
 assert n_act == 24
-S["actuator_classes"] = {k: {"count": c, "kg": m, "joints": j} for k, (c, m, j) in ACT.items()}
-m_act = sum(c * m for c, m, _ in ACT.values())
+S["actuator_classes"] = {k: {"count": v[0], "kg": v[1], "joints": v[2], "od_mm": v[3], "width_mm": v[4],
+                             "reducer": v[5]} for k, v in ACT.items()}
+m_act = sum(v[0] * v[1] for v in ACT.values())
 budget = [
     ("Turbines ×5 (P400-class)", n_turb * m_turb),
     ("Turbine mounts, nozzles, heat shields", 3.00),
@@ -108,7 +116,21 @@ ratio = put("planetary_ratio", 1 + Zr / Zs, "", "calc", "ring fixed, sun in, car
 put("planetary_assembly_check", (Zs + Zr) // 3, "", "calc", "(Zs+Zr)/N integer => assemblable")
 mod = put("gear_module", 1.0, "mm", "design")
 put("sun_planet_centre_distance", mod * (Zs + Zp) / 2, "mm", "calc")
+# 12 teeth < 17 (standard undercut limit at 20°) -> positive profile shift on the sun, S0 gearing keeps 27 mm
+alpha = math.radians(20)
+put("pressure_angle", 20, "deg", "const")
+put("undercut_limit_teeth", round(2 / math.sin(alpha) ** 2, 2), "", "calc", "z_min = 2/sin²α for a standard gear (x = 0)")
+x_s = put("profile_shift_sun", 0.30, "", "design", "S0 gearing: x_sun + x_planet = 0")
+put("profile_shift_planet", -0.30, "", "design")
+put("profile_shift_ring", -0.30, "", "design", "internal mesh keeps a = m(Zr−Zp)/2")
+zmin_shift = 2 * (1 - x_s) / math.sin(alpha) ** 2
+put("undercut_limit_shifted", round(zmin_shift, 2), "", "calc", "z_min = 2(1−x)/sin²α")
+assert Zs >= zmin_shift, "sun gear would be undercut"
+put("ring_planet_centre_distance", mod * (Zr - Zp) / 2, "mm", "calc", "must equal sun–planet distance")
+assert mod * (Zr - Zp) / 2 == mod * (Zs + Zp) / 2
 Tk = put("knee_torque_design", round(1.5 * m_sys), "N·m", "calc", "1.5 N·m/kg × system mass")
+put("L_torque_density", round(Tk / ACT["L"][1]), "N·m/kg", "calc", "peak; below Unitree M107 189 N·m/kg")
+assert Tk / ACT["L"][1] < 360 / 1.9
 Tm = put("knee_motor_torque_peak", round(Tk / ratio, 1), "N·m", "calc")
 # Lewis bending check of the sun gear (simplified, no dynamic factor)
 b_face = put("gear_face_width", 20, "mm", "design")
@@ -125,6 +147,16 @@ Zf, Zc = 200, 202
 put("harmonic_flexspline_teeth", Zf, "", "design")
 put("harmonic_circular_teeth", Zc, "", "design")
 put("harmonic_drive_ratio", Zf // (Zc - Zf), "", "calc", "Zf/(Zc−Zf); shoulders (L class, holding load)")
+mh = put("harmonic_module", 0.4, "mm", "design")
+put("harmonic_flexspline_pd", round(mh * Zf, 2), "mm", "calc", "pitch diameter")
+put("harmonic_circular_pd", round(mh * Zc, 2), "mm", "calc")
+put("harmonic_radial_deflection", round(mh * (Zc - Zf) / 2, 2), "mm", "calc", "wave generator: w0 = m(Zc−Zf)/2")
+# shoulder moment when the arm thrust line is steered off the arm axis
+th_steer = put("arm_steer_angle", 15, "deg", "design", "max thrust-vector steering by arm angle")
+r_thr = put("shoulder_to_thrust_line", 0.45, "m", "design", "shoulder GH centre to arm-pod thrust centre")
+put("shoulder_steer_moment", round(2 * T1 * r_thr * math.sin(math.radians(th_steer))), "N·m", "calc",
+    "arm thrust × lever × sin(steer); must stay below L-class peak")
+assert 2 * T1 * r_thr * math.sin(math.radians(th_steer)) < Tk
 put("encoder_bits", 17, "bit", "design", "motor-side and output-side (dual encoder)")
 put("encoder_cpr", 2 ** 17, "counts/rev", "calc")
 w_knee = put("knee_peak_velocity", 6.0, "rad/s", "design", "~345 deg/s gait peak")
@@ -209,6 +241,96 @@ S["beam_mode_ratios"] = [1.0, 2.756, 5.404, 8.933]
 put("mains_hum", 120, "Hz", "calc", "2 × 60 Hz grid (KR)")
 put("hangar_rt60", 2.5, "s", "design")
 
+# ---------------------------------------------------------------- geometry layout (shared by Blender + web)
+# Blender frame: metres, Z up, suit faces −Y, +X = suit's LEFT (.L). glTF/three: (x, z, −y).
+# Pilot: 50th-percentile adult male, H = 1.75 m barefoot; segment ratios after Drillis & Contini (fractions of H).
+H = put("pilot_height", 1.75, "m", "design", "barefoot stature")
+foot_plate = put("foot_plate_thickness", 0.020, "m", "design", "exo foot plate under the boot")
+boot_sole = put("boot_sole_thickness", 0.025, "m", "design")
+z0 = foot_plate + boot_sole
+ratio_h = {"ankle": 0.039, "knee": 0.285, "hip": 0.529, "gh": 0.794, "elbow": 0.631, "head_top": 1.0}
+upper_arm = 0.163 * H          # GH centre -> elbow axis
+fore_arm = 0.146 * H           # elbow -> wrist
+abd = math.radians(12)          # rest pose: arms abducted 12°
+flex = math.radians(15)         # rest pose: elbows flexed 15° forward
+
+def v3(x, y, z):
+    return [round(x, 4), round(y, 4), round(z, 4)]
+
+gh = (0.185, 0.02, z0 + ratio_h["gh"] * H)
+elbow = (gh[0] + upper_arm * math.sin(abd), gh[1], gh[2] - upper_arm * math.cos(abd))
+fdir = (math.sin(abd) * math.cos(flex), -math.sin(flex), -math.cos(abd) * math.cos(flex))
+wrist = tuple(elbow[i] + fore_arm * fdir[i] for i in range(3))
+grip = tuple(wrist[i] + 0.075 * fdir[i] for i in range(3))
+J = {  # pilot joint centres, LEFT side (mirror x for right)
+    "ankle": v3(0.090, 0.000, z0 + ratio_h["ankle"] * H),
+    "knee": v3(0.095, 0.005, z0 + ratio_h["knee"] * H),
+    "hip": v3(0.085, 0.000, z0 + ratio_h["hip"] * H),
+    "gh": v3(*gh),
+    "elbow": v3(*elbow),
+    "wrist": v3(*wrist),
+    "grip": v3(*grip),
+    "pelvis": v3(0, 0.0, z0 + 0.57 * H),
+    "lumbar": v3(0, 0.03, z0 + 0.62 * H),
+    "chest": v3(0, 0.0, z0 + 0.73 * H),
+    "c7": v3(0, 0.055, z0 + 0.845 * H),
+    "head": v3(0, 0.0, z0 + 0.94 * H),
+    "head_top": v3(0, 0.0, z0 + H),
+}
+fa = [round(c, 4) for c in fdir]
+A = S["actuator_classes"]
+Lw, Mw, Sw = A["L"]["width_mm"] / 1000, A["M"]["width_mm"] / 1000, A["S"]["width_mm"] / 1000
+# exo joints: centre, axis (unit, Blender frame, LEFT side), class. Axes pass through (or near) pilot joints.
+X = {
+    "hip_abd":      {"c": v3(0.135, 0.150, J["hip"][2] + 0.055), "axis": [0, 1, 0], "cls": "L",
+                     "note": "behind hip on pelvis belt; 6–7 cm misalignment taken by a passive slider in the thigh link"},
+    "hip_flex":     {"c": v3(0.190 + Lw / 2, 0.0, J["hip"][2]), "axis": [1, 0, 0], "cls": "L"},
+    "hip_rot":      {"c": None, "axis": "link", "cls": "M",
+                     "note": "in-line with the thigh link, 40 % down from the hip actuator"},
+    "knee":         {"c": v3(0.150 + Lw / 2, J["knee"][1], J["knee"][2]), "axis": [1, 0, 0], "cls": "L"},
+    "ankle_pitch":  {"c": v3(0.135 + Mw / 2, J["ankle"][1], J["ankle"][2]), "axis": [1, 0, 0], "cls": "M"},
+    "ankle_roll":   {"c": v3(J["ankle"][0], 0.095, 0.078), "axis": [0, 1, 0], "cls": "S", "note": "behind the heel"},
+    "trunk_rot":    {"c": v3(0, 0.165, J["lumbar"][2]), "axis": [0, 0, 1], "cls": "M", "side": "C"},
+    "neck":         {"c": v3(0, 0.125, J["c7"][2] + 0.02), "axis": [0, 0, 1], "cls": "S", "side": "C"},
+    "shoulder_abd": {"c": v3(gh[0], gh[1] + 0.135, gh[2]), "axis": [0, 1, 0], "cls": "L",
+                     "note": "behind GH; flex + abd axes intersect at the GH centre (remote centre)"},
+    "shoulder_flex":{"c": v3(gh[0] + 0.070 + Lw / 2, gh[1], gh[2]), "axis": [1, 0, 0], "cls": "L"},
+    "shoulder_rot": {"c": v3(*[gh[i] + [math.sin(abd), 0, -math.cos(abd)][i] * 0.12 for i in range(3)]),
+                     "axis": "upper_arm", "cls": "M", "note": "arc-rail bearing around the upper arm"},
+    "elbow":        {"c": v3(elbow[0] + 0.075, elbow[1], elbow[2] + 0.075 * math.tan(abd)),
+                     "axis": [math.cos(abd), 0, math.sin(abd)], "cls": "M"},
+    "wrist":        {"c": v3(*wrist), "axis": fa, "cls": "S", "note": "rotates the throttle grip module"},
+}
+assert sum(1 if v.get("side") == "C" else 2 for v in X.values()) == 24, "exo joint count must be 24"
+_hf, _kn = X["hip_flex"]["c"], X["knee"]["c"]
+X["hip_rot"]["c"] = v3(*[_hf[i] + 0.40 * (_kn[i] - _hf[i]) for i in range(3)])
+# propulsion & tanks
+tr = S["turbine_diameter"]["v"] / 2000
+tl = S["turbine_length"]["v"] / 1000
+back_turbine = {"c": v3(0, 0.345, J["chest"][2] + 0.04), "axis": [0, 0, -1], "note": "vertical, exhaust down"}
+pod_lat = 0.105   # arm-pod turbines: lateral offset from forearm axis
+pod_ap = 0.082    # ± fore/aft offset (16 mm gap between the two casings)
+pod_along = 0.040  # shifted toward the hand so the intake sits at elbow height
+tank_r = 0.080
+tank_len = fuel_L / 2 / 1000 / (math.pi * tank_r ** 2) + 2 / 3 * tank_r  # V = πr²Lc + 4/3πr³, total = Lc + 2r
+S["layout"] = {
+    "frame": "Blender metres, Z up, front = −Y, +X = suit LEFT; glTF (x, z, −y)",
+    "z0_barefoot": round(z0, 4),
+    "pilot": J,
+    "exo": X,
+    "forearm_dir": fa,
+    "back_turbine": back_turbine,
+    "arm_pod": {"lateral": pod_lat, "fore_aft": pod_ap, "along": pod_along, "turbine_r": round(tr, 4), "turbine_len": tl},
+    "tanks": {"x": 0.176, "y": 0.300, "zc": J["chest"][2] + 0.02, "r": tank_r,
+              "len": round(tank_len, 4), "volume_L_each": fuel_L / 2},
+    "battery": {"size": [0.18, 0.07, 0.30], "c": v3(0, 0.22, J["chest"][2] + 0.03),
+                "note": "3.78 L pack, ≈317 Wh/L"},
+    "stand": {"post_x": 0.46, "post_y": 0.62, "height": 2.15, "clamp_z": J["chest"][2] + 0.10},
+}
+put("tank_length", round(tank_len * 1000), "mm", "calc", "Ø160 cylinder with hemispherical ends, 8.0 L each")
+put("upper_arm_length", round(upper_arm * 1000), "mm", "calc", "0.163 H")
+put("forearm_length", round(fore_arm * 1000), "mm", "calc", "0.146 H")
+
 # ---------------------------------------------------------------- specs used on page as headline
 S["_headline"] = {
     "dry": dry, "takeoff": M0, "W": W, "T": T, "TW": TW,
@@ -218,8 +340,7 @@ import os
 root = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(root, "specs.json"), "w") as f:
     json.dump(S, f, ensure_ascii=False, indent=1)
-with open(os.path.join(root, "..", "src", "specs.js"), "w") as f:
-    f.write("window.KX_SPECS = " + json.dumps(S, ensure_ascii=False) + ";\n")
+# (the web app imports calc/specs.json directly through Vite; no generated JS copy)
 for k, v in S.items():
     if isinstance(v, dict) and "v" in v:
         print(f"{k:32s} {v['v']!s:>12} {v['unit']:10s} [{v['tag']}]")

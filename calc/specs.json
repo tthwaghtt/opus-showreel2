@@ -119,21 +119,48 @@
   "tag": "design",
   "note": ""
  },
+ "ref_m107_peak_torque": {
+  "v": 360,
+  "unit": "N·m",
+  "tag": "spec",
+  "note": "Unitree M107 (H1 knee), vendor brochure"
+ },
+ "ref_m107_mass": {
+  "v": 1.9,
+  "unit": "kg",
+  "tag": "spec",
+  "note": "Unitree M107"
+ },
+ "ref_m107_torque_density": {
+  "v": 189,
+  "unit": "N·m/kg",
+  "tag": "calc",
+  "note": ""
+ },
  "actuator_classes": {
   "L": {
    "count": 10,
-   "kg": 1.1,
-   "joints": "hip flex ×2, hip abd ×2, knee ×2, shoulder flex ×2, shoulder abd ×2"
+   "kg": 1.4,
+   "joints": "hip flex ×2, hip abd ×2, knee ×2, shoulder flex ×2, shoulder abd ×2",
+   "od_mm": 135,
+   "width_mm": 78,
+   "reducer": "hip/knee: 1-stage planetary 9:1 (QDD, backdrivable) · shoulder: strain-wave 100:1 (holds thrust load)"
   },
   "M": {
    "count": 9,
    "kg": 0.7,
-   "joints": "hip rot ×2, ankle pitch ×2, shoulder rot ×2, elbow ×2, trunk rot ×1"
+   "joints": "hip rot ×2, ankle pitch ×2, shoulder rot ×2, elbow ×2, trunk rot ×1",
+   "od_mm": 104,
+   "width_mm": 62,
+   "reducer": "strain-wave 80:1"
   },
   "S": {
    "count": 5,
    "kg": 0.45,
-   "joints": "ankle roll ×2, wrist ×2, neck ×1"
+   "joints": "ankle roll ×2, wrist ×2, neck (helmet yaw support) ×1",
+   "od_mm": 80,
+   "width_mm": 50,
+   "reducer": "strain-wave 50:1"
   }
  },
  "mass_budget": [
@@ -155,7 +182,7 @@
   },
   {
    "item": "Joint actuators ×24 (L10 / M9 / S5)",
-   "kg": 19.55
+   "kg": 22.55
   },
   {
    "item": "Battery 1.2 kWh",
@@ -179,25 +206,25 @@
   }
  ],
  "suit_dry_mass": {
-  "v": 75.95,
+  "v": 78.95,
   "unit": "kg",
   "tag": "calc",
   "note": ""
  },
  "system_mass_no_fuel": {
-  "v": 150.95,
+  "v": 153.95,
   "unit": "kg",
   "tag": "calc",
   "note": ""
  },
  "takeoff_mass": {
-  "v": 163.75,
+  "v": 166.75,
   "unit": "kg",
   "tag": "calc",
   "note": ""
  },
  "takeoff_weight": {
-  "v": 1606.4,
+  "v": 1635.8,
   "unit": "N",
   "tag": "calc",
   "note": ""
@@ -209,7 +236,7 @@
   "note": ""
  },
  "thrust_to_weight": {
-  "v": 1.323,
+  "v": 1.299,
   "unit": "",
   "tag": "calc",
   "note": ""
@@ -221,7 +248,7 @@
   "note": "attitude-control margin"
  },
  "hover_throttle": {
-  "v": 75.6,
+  "v": 77.0,
   "unit": "%",
   "tag": "calc",
   "note": ""
@@ -245,7 +272,7 @@
   "note": ""
  },
  "hover_endurance": {
-  "v": 160,
+  "v": 157,
   "unit": "s",
   "tag": "calc",
   "note": "constant-TSFC, 15% reserve"
@@ -257,13 +284,13 @@
   "note": "TSFC worse at ~70% throttle"
  },
  "hover_endurance_conservative": {
-  "v": 141,
+  "v": 138,
   "unit": "s",
   "tag": "calc",
   "note": "hover_endurance / penalty"
  },
  "hover_fuel_flow_initial": {
-  "v": 4.21,
+  "v": 4.29,
   "unit": "kg/min",
   "tag": "calc",
   "note": ""
@@ -377,14 +404,62 @@
   "tag": "calc",
   "note": ""
  },
+ "pressure_angle": {
+  "v": 20,
+  "unit": "deg",
+  "tag": "const",
+  "note": ""
+ },
+ "undercut_limit_teeth": {
+  "v": 17.1,
+  "unit": "",
+  "tag": "calc",
+  "note": "z_min = 2/sin²α for a standard gear (x = 0)"
+ },
+ "profile_shift_sun": {
+  "v": 0.3,
+  "unit": "",
+  "tag": "design",
+  "note": "S0 gearing: x_sun + x_planet = 0"
+ },
+ "profile_shift_planet": {
+  "v": -0.3,
+  "unit": "",
+  "tag": "design",
+  "note": ""
+ },
+ "profile_shift_ring": {
+  "v": -0.3,
+  "unit": "",
+  "tag": "design",
+  "note": "internal mesh keeps a = m(Zr−Zp)/2"
+ },
+ "undercut_limit_shifted": {
+  "v": 11.97,
+  "unit": "",
+  "tag": "calc",
+  "note": "z_min = 2(1−x)/sin²α"
+ },
+ "ring_planet_centre_distance": {
+  "v": 27.0,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "must equal sun–planet distance"
+ },
  "knee_torque_design": {
-  "v": 226,
+  "v": 231,
   "unit": "N·m",
   "tag": "calc",
   "note": "1.5 N·m/kg × system mass"
  },
+ "L_torque_density": {
+  "v": 165,
+  "unit": "N·m/kg",
+  "tag": "calc",
+  "note": "peak; below Unitree M107 189 N·m/kg"
+ },
  "knee_motor_torque_peak": {
-  "v": 25.1,
+  "v": 25.7,
   "unit": "N·m",
   "tag": "calc",
   "note": ""
@@ -396,13 +471,13 @@
   "note": ""
  },
  "sun_tangential_force": {
-  "v": 1394,
+  "v": 1428,
   "unit": "N",
   "tag": "calc",
   "note": "per planet mesh"
  },
  "sun_bending_stress": {
-  "v": 285,
+  "v": 291,
   "unit": "MPa",
   "tag": "calc",
   "note": "Lewis, simplified"
@@ -414,7 +489,7 @@
   "note": "case-hardened 18CrNiMo7-6, approx."
  },
  "gear_FoS": {
-  "v": 1.76,
+  "v": 1.72,
   "unit": "",
   "tag": "calc",
   "note": ""
@@ -448,6 +523,48 @@
   "unit": "",
   "tag": "calc",
   "note": "Zf/(Zc−Zf); shoulders (L class, holding load)"
+ },
+ "harmonic_module": {
+  "v": 0.4,
+  "unit": "mm",
+  "tag": "design",
+  "note": ""
+ },
+ "harmonic_flexspline_pd": {
+  "v": 80.0,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "pitch diameter"
+ },
+ "harmonic_circular_pd": {
+  "v": 80.8,
+  "unit": "mm",
+  "tag": "calc",
+  "note": ""
+ },
+ "harmonic_radial_deflection": {
+  "v": 0.4,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "wave generator: w0 = m(Zc−Zf)/2"
+ },
+ "arm_steer_angle": {
+  "v": 15,
+  "unit": "deg",
+  "tag": "design",
+  "note": "max thrust-vector steering by arm angle"
+ },
+ "shoulder_to_thrust_line": {
+  "v": 0.45,
+  "unit": "m",
+  "tag": "design",
+  "note": "shoulder GH centre to arm-pod thrust centre"
+ },
+ "shoulder_steer_moment": {
+  "v": 99,
+  "unit": "N·m",
+  "tag": "calc",
+  "note": "arm thrust × lever × sin(steer); must stay below L-class peak"
  },
  "encoder_bits": {
   "v": 17,
@@ -713,7 +830,7 @@
   "note": "asymmetric landing, one leg"
  },
  "landing_force": {
-  "v": 5923,
+  "v": 6041,
   "unit": "N",
   "tag": "calc",
   "note": ""
@@ -725,19 +842,19 @@
   "note": ""
  },
  "link_moment": {
-  "v": 355,
+  "v": 362,
   "unit": "N·m",
   "tag": "calc",
   "note": ""
  },
  "link_stress": {
-  "v": 267,
+  "v": 272,
   "unit": "MPa",
   "tag": "calc",
   "note": ""
  },
  "link_FoS": {
-  "v": 3.3,
+  "v": 3.23,
   "unit": "",
   "tag": "calc",
   "note": ""
@@ -784,11 +901,341 @@
   "tag": "design",
   "note": ""
  },
+ "pilot_height": {
+  "v": 1.75,
+  "unit": "m",
+  "tag": "design",
+  "note": "barefoot stature"
+ },
+ "foot_plate_thickness": {
+  "v": 0.02,
+  "unit": "m",
+  "tag": "design",
+  "note": "exo foot plate under the boot"
+ },
+ "boot_sole_thickness": {
+  "v": 0.025,
+  "unit": "m",
+  "tag": "design",
+  "note": ""
+ },
+ "layout": {
+  "frame": "Blender metres, Z up, front = −Y, +X = suit LEFT; glTF (x, z, −y)",
+  "z0_barefoot": 0.045,
+  "pilot": {
+   "ankle": [
+    0.09,
+    0.0,
+    0.1133
+   ],
+   "knee": [
+    0.095,
+    0.005,
+    0.5437
+   ],
+   "hip": [
+    0.085,
+    0.0,
+    0.9708
+   ],
+   "gh": [
+    0.185,
+    0.02,
+    1.4345
+   ],
+   "elbow": [
+    0.2443,
+    0.02,
+    1.1555
+   ],
+   "wrist": [
+    0.2956,
+    -0.0461,
+    0.9141
+   ],
+   "grip": [
+    0.3107,
+    -0.0655,
+    0.8432
+   ],
+   "pelvis": [
+    0,
+    0.0,
+    1.0425
+   ],
+   "lumbar": [
+    0,
+    0.03,
+    1.13
+   ],
+   "chest": [
+    0,
+    0.0,
+    1.3225
+   ],
+   "c7": [
+    0,
+    0.055,
+    1.5237
+   ],
+   "head": [
+    0,
+    0.0,
+    1.69
+   ],
+   "head_top": [
+    0,
+    0.0,
+    1.795
+   ]
+  },
+  "exo": {
+   "hip_abd": {
+    "c": [
+     0.135,
+     0.15,
+     1.0258
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "cls": "L",
+    "note": "behind hip on pelvis belt; 6–7 cm misalignment taken by a passive slider in the thigh link"
+   },
+   "hip_flex": {
+    "c": [
+     0.229,
+     0.0,
+     0.9708
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "cls": "L"
+   },
+   "hip_rot": {
+    "c": [
+     0.213,
+     0.002,
+     0.8
+    ],
+    "axis": "link",
+    "cls": "M",
+    "note": "in-line with the thigh link, 40 % down from the hip actuator"
+   },
+   "knee": {
+    "c": [
+     0.189,
+     0.005,
+     0.5437
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "cls": "L"
+   },
+   "ankle_pitch": {
+    "c": [
+     0.166,
+     0.0,
+     0.1133
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "cls": "M"
+   },
+   "ankle_roll": {
+    "c": [
+     0.09,
+     0.095,
+     0.078
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "cls": "S",
+    "note": "behind the heel"
+   },
+   "trunk_rot": {
+    "c": [
+     0,
+     0.165,
+     1.13
+    ],
+    "axis": [
+     0,
+     0,
+     1
+    ],
+    "cls": "M",
+    "side": "C"
+   },
+   "neck": {
+    "c": [
+     0,
+     0.125,
+     1.5437
+    ],
+    "axis": [
+     0,
+     0,
+     1
+    ],
+    "cls": "S",
+    "side": "C"
+   },
+   "shoulder_abd": {
+    "c": [
+     0.185,
+     0.155,
+     1.4345
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "cls": "L",
+    "note": "behind GH; flex + abd axes intersect at the GH centre (remote centre)"
+   },
+   "shoulder_flex": {
+    "c": [
+     0.294,
+     0.02,
+     1.4345
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "cls": "L"
+   },
+   "shoulder_rot": {
+    "c": [
+     0.2099,
+     0.02,
+     1.3171
+    ],
+    "axis": "upper_arm",
+    "cls": "M",
+    "note": "arc-rail bearing around the upper arm"
+   },
+   "elbow": {
+    "c": [
+     0.3193,
+     0.02,
+     1.1714
+    ],
+    "axis": [
+     0.9781476007338057,
+     0,
+     0.20791169081775934
+    ],
+    "cls": "M"
+   },
+   "wrist": {
+    "c": [
+     0.2956,
+     -0.0461,
+     0.9141
+    ],
+    "axis": [
+     0.2008,
+     -0.2588,
+     -0.9448
+    ],
+    "cls": "S",
+    "note": "rotates the throttle grip module"
+   }
+  },
+  "forearm_dir": [
+   0.2008,
+   -0.2588,
+   -0.9448
+  ],
+  "back_turbine": {
+   "c": [
+    0,
+    0.345,
+    1.3625
+   ],
+   "axis": [
+    0,
+    0,
+    -1
+   ],
+   "note": "vertical, exhaust down"
+  },
+  "arm_pod": {
+   "lateral": 0.105,
+   "fore_aft": 0.082,
+   "along": 0.04,
+   "turbine_r": 0.0742,
+   "turbine_len": 0.39
+  },
+  "tanks": {
+   "x": 0.176,
+   "y": 0.3,
+   "zc": 1.3425,
+   "r": 0.08,
+   "len": 0.4512,
+   "volume_L_each": 8.0
+  },
+  "battery": {
+   "size": [
+    0.18,
+    0.07,
+    0.3
+   ],
+   "c": [
+    0,
+    0.22,
+    1.3525
+   ],
+   "note": "3.78 L pack, ≈317 Wh/L"
+  },
+  "stand": {
+   "post_x": 0.46,
+   "post_y": 0.62,
+   "height": 2.15,
+   "clamp_z": 1.4225
+  }
+ },
+ "tank_length": {
+  "v": 451,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "Ø160 cylinder with hemispherical ends, 8.0 L each"
+ },
+ "upper_arm_length": {
+  "v": 285,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "0.163 H"
+ },
+ "forearm_length": {
+  "v": 256,
+  "unit": "mm",
+  "tag": "calc",
+  "note": "0.146 H"
+ },
  "_headline": {
-  "dry": 75.95,
-  "takeoff": 163.75,
-  "W": 1606.4,
+  "dry": 78.95,
+  "takeoff": 166.75,
+  "W": 1635.8,
   "T": 2125.0,
-  "TW": 1.323
+  "TW": 1.299
  }
 }
