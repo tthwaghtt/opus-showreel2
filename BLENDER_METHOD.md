@@ -191,7 +191,8 @@ CFRP 장갑판은 가공품이 아니라 성형품이므로 규칙이 다르다:
 - **방열판 2장** (도하 스케치): 윤곽 = `layout.back_radiators.outline_xz` (왼쪽, x 미러로 오른쪽), 두께 25 mm (`y` 범위), 등 장갑과 같은 면(플러시)으로 파묻힌다.
   - 흑연 셸 + 마이크로채널 방열 코어 + 팬 2개 소켓(`fans_xz`, Ø80) + **브론즈 루버**(따뜻한 공기가 나가는 곳).
   - 결합부 소켓: 자석 가이드 2, 오버센터 래치 2~4, 건식 커플링 2 (냉각수 입·출). "딸깍" 결합과 교체 동작의 축을 빈 객체로.
-  - 크기는 윤곽 좌표 하나로 정한다 (외접 140 × 340 mm). 스크립트에 치수를 따로 적지 않는다.
+  - 크기는 윤곽 좌표 하나로 정한다 (외접 119 × 340 mm). 스크립트에 치수를 따로 적지 않는다.
+  - 바깥 윗모서리는 어깨 외전 링과 같은 중심의 오목한 호 (뒤에서 링이 보이도록, PLAN #85). 팬 2개는 판의 아래 2/3.
 - **허리 곡선 레일**: `layout.trunk_arc` (척추 축 중심, 반지름 120 mm, ±35°). 금색 레일 + 섹터 기어 외형(27T 구간, 톱니는 코드) + 골반 쪽 피니언 하우징.
   배 쪽에는 링이 없다 (v2 허리 링 폐기, PLAN #66).
 
@@ -228,7 +229,7 @@ CFRP 장갑판은 가공품이 아니라 성형품이므로 규칙이 다르다:
 - 컬렉션: `CH-kst`(슈트) 아래 `kst_pilot` / `kst_internal` / `kst_armor`, `SE-kst_cell`(로봇 셀·바닥), `LG-kst_studio`(조명), `CA-kst`(카메라),
   정밀 어셈블리 `kst_detail_knee`, `kst_detail_harmonic`, `kst_detail_core`, `kst_detail_helmet`, `kst_detail_gauntlet`
 - **원점은 관절 회전축에**, 변환은 적용된 상태로 내보낸다.
-- 부품마다 사용자 속성: `part_no`, `layer`, `material`, `mass_kg`, 분해용 `explode_axis`, `explode_order`, `explode_stage`(1 = 장갑, 2 = 내부) (glTF extras로 나감).
+- 부품마다 사용자 속성: `part_no`, `layer`, `material`, `mass_kg`, `calc_keys`(관련 계산 시트 키 목록 → 부품 카드·계산서 링크), 분해용 `explode_axis`, `explode_order`, `explode_stage`(1 = 장갑, 2 = 내부) (glTF extras로 나감).
 - 관절은 객체 계층(부모-자식)으로 구성한다. 웹에서는 객체 변환만으로 애니메이션한다 (조종사만 스키닝).
 
 ## 5. 재질

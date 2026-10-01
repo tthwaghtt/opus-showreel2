@@ -301,25 +301,51 @@ z_pump = put("pump_vanes", 5, "", "design")
 put("pump_bpf", round(rpm_pump / 60 * z_pump), "Hz", "calc")
 # Doha's sketch: two thin tapered panels flush on the back (wide top, rounded narrow bottom).
 # Left panel outline in Blender metres (x, z), mirrored for the right; the outline is the single source for its size.
-rad_xz = [(0.030, 1.500), (0.105, 1.500), (0.170, 1.410), (0.125, 1.200), (0.085, 1.160), (0.035, 1.180)]
+# Its upper-outer corner is cut as an arc CONCENTRIC with the shoulder-abduction ring behind the shoulder, so the gold
+# ring stays exposed when seen from behind (PLAN #85). Curve and function in one line.
+_sa = X["shoulder_abd"]["c"]
+ring_sa = ACT["L"][3] / 2000                                 # output ring radius of the L-class actuator
+notch_r = ring_sa + 0.0075                                   # 7.5 mm clear of the rotating ring
+rad_top = 1.500
+_x_top = _sa[0] - math.sqrt(notch_r ** 2 - (rad_top - _sa[2]) ** 2)
+_a0 = math.atan2(rad_top - _sa[2], _x_top - _sa[0])
+_a1 = math.radians(250)
+_arc = [(round(_sa[0] + notch_r * math.cos(_a0 + (_a1 - _a0) * i / 7), 4),
+         round(_sa[2] + notch_r * math.sin(_a0 + (_a1 - _a0) * i / 7), 4)) for i in range(8)]
+rad_xz = [(0.030, rad_top)] + _arc + [(0.125, 1.200), (0.085, 1.160), (0.035, 1.180)]
 rad_t = 25
 rad_xs, rad_zs = [p_[0] for p_ in rad_xz], [p_[1] for p_ in rad_xz]
 put("radiator_panel", [round((max(rad_xs) - min(rad_xs)) * 1000), round((max(rad_zs) - min(rad_zs)) * 1000), rad_t], "mm", "calc",
     "each: bounding width × height × thickness of the tapered outline (layout.back_radiators)")
 n_fan = put("radiator_fans", 4, "", "design", "2 × 80×25 mm per panel, behind bronze louvers")
 d_fan = 0.080
-rad_fan_xz = [(0.085, 1.430), (0.085, 1.300)]                # fan centres, left panel
+rad_fan_xz = [(0.082, 1.245), (0.085, 1.338)]                # fan centres, left panel (lower 2/3; core above)
 
 
-def _inset(p_, a_, b_):
-    """signed distance of p inside edge a->b of a clockwise (x, z) outline (> 0 = inside)."""
+def _seg_dist(p_, a_, b_):
     ex, ez = b_[0] - a_[0], b_[1] - a_[1]
-    return -(ex * (p_[1] - a_[1]) - ez * (p_[0] - a_[0])) / math.hypot(ex, ez)
+    t_ = max(0.0, min(1.0, ((p_[0] - a_[0]) * ex + (p_[1] - a_[1]) * ez) / (ex * ex + ez * ez)))
+    return math.hypot(p_[0] - a_[0] - t_ * ex, p_[1] - a_[1] - t_ * ez)
 
 
-for fc in rad_fan_xz:                                       # the outline is convex: min inset = clearance to the rim
-    assert min(_inset(fc, rad_xz[i], rad_xz[(i + 1) % 6]) for i in range(6)) >= d_fan / 2 + 0.005, "fan does not fit the panel"
+def _inside(p_, poly):
+    c_ = False
+    for i in range(len(poly)):
+        (x1, z1), (x2, z2) = poly[i], poly[(i + 1) % len(poly)]
+        if (z1 > p_[1]) != (z2 > p_[1]) and p_[0] < x1 + (p_[1] - z1) * (x2 - x1) / (z2 - z1):
+            c_ = not c_
+    return c_
+
+
+def _rim(p_, poly):
+    return min(_seg_dist(p_, poly[i], poly[(i + 1) % len(poly)]) for i in range(len(poly)))
+
+
+for fc in rad_fan_xz:
+    assert _inside(fc, rad_xz) and _rim(fc, rad_xz) >= d_fan / 2 + 0.005, "fan does not fit the panel"
 assert math.dist(*rad_fan_xz) >= d_fan + 0.010, "fans overlap"
+assert not _inside((_sa[0], _sa[2]), rad_xz) and _rim((_sa[0], _sa[2]), rad_xz) >= ring_sa + 0.005, \
+    "radiator hides the shoulder-abduction ring seen from behind"
 q_air = put("radiator_airflow", 45, "L/s", "design",
             "per panel: 2 fans at 6,000 rpm, ≈33 L/s each in free air, ≈22 L/s against the microchannel core")
 dT_air = put("radiator_air_rise", 25, "K", "design", "air 25 °C in -> 50 °C out at the 70 °C design point")
@@ -720,7 +746,8 @@ assert core_z[1] < J["jugular"][2] - 0.005, "core runs into the neck"
 keel_front = core_c[1] - core_r - 0.012                      # gap + armor + keel strip
 put("keel_protrusion", round(-(keel_front + chest_d) * 1000), "mm", "calc", "keel ridge in front of the pilot's chest")
 rad_y = [0.195, 0.195 + rad_t / 1000]                          # outline rad_xz and fans: thermal section
-area = 0.5 * abs(sum(rad_xz[i][0] * rad_xz[(i + 1) % 6][1] - rad_xz[(i + 1) % 6][0] * rad_xz[i][1] for i in range(6)))
+_n = len(rad_xz)
+area = 0.5 * abs(sum(rad_xz[i][0] * rad_xz[(i + 1) % _n][1] - rad_xz[(i + 1) % _n][0] * rad_xz[i][1] for i in range(_n)))
 put("radiator_panel_area", rd(area, 4), "m²", "calc", "frontal area of one tapered panel")
 
 

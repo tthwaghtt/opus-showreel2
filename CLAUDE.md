@@ -10,7 +10,7 @@ pilot's chiller condenses at 80 °C above the 70 °C shared loop — the calc sh
 
 ## Source of truth (read in this order)
 1. `PROGRESS.md` — what is done, what is next, open issues. **Update it at every milestone.**
-2. `PLAN.md` — every decision (sections 0–12). Section 10 = contradiction log (v2 from #31, v2.1 from #62), section 11 = v1 → v2 → v2.1 table.
+2. `PLAN.md` — every decision (sections 0–12; 5-6 = ENGINEERING DOSSIER). Section 10 = contradiction log (v2 from #31, v2.1 from #62), section 11 = v1 → v2 → v2.1 table.
 3. `CONTRACT.md` — build rules (files, constraints, visual/motion/number rules, testing).
 4. `BLENDER_METHOD.md` — how 3D is made (Blender = shape & surface, code = numbers & motion, sockets, armor panels, helmet, neck, keel core, radiators, MakeHuman pilot).
 5. `calc/specs.py` → `calc/specs.json` — ALL engineering numbers. Never hardcode a number that is in specs.
@@ -48,6 +48,8 @@ pilot's chiller condenses at 80 °C above the 70 °C shared loop — the calc sh
   MakeHuman CC0 body with subtle motion (not a mannequin).
 - Suit-up: a robot cell assembles parts onto the pilot in our own choreography (load-path order), then the first heartbeat.
   Never copy film choreography.
+- The calculations must be discoverable without cluttering the scroll: a second layer, ENGINEERING DOSSIER (PLAN 5-6) — live cyan numbers
+  that unfold their derivation, calc sheets C-01..C-12, what-if sliders, a number map, the revision history. Generated from the calc sheet.
 - NO big decorative title text anywhere. Name only small in the title block ("DRAWN BY DOHA").
 - UI colors carry meaning: cyan = measured values, orange = real heat (core waste heat, radiators, wax buffer, damper oil),
   green = approved, yellow = torque paint / caution.
