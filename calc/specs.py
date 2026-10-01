@@ -279,9 +279,17 @@ mdot = flow * 0.998 / 60
 put("lcvg_delta_T", rd(Q_p / (mdot * 4186)), "K", "calc", "Q = ṁ c_p ΔT")
 put("lcvg_outlet_temp", rd(T_in + Q_p / (mdot * 4186), 1), "degC", "calc")
 put("lcvg_tube", [3.2, 80], "mm, m", "design", "tube OD, total length — quilted into the flight suit")
-COP = put("chiller_cop", 2.5, "", "design", "micro vapour-compression loop")
-Te, Tc = 285.15, 323.15
-put("chiller_cop_carnot", rd(Te / (Tc - Te)), "", "calc", "T_evap 12 °C, T_cond 50 °C")
+# loop temperatures: heat only flows downhill, so every hand-off must go from hotter to colder
+T_amb = put("ambient_design_temp", 25, "degC", "design", "radiator capacity is quoted for 25 °C outside air")
+T_cool = put("coolant_design_temp", 70, "degC", "design",
+             "shared loop at the radiator design point (heavy work); the melting wax holds it here")
+T_ev = put("chiller_evaporating_temp", 12, "degC", "design", "below the 18 °C garment inlet")
+T_cd = put("chiller_condensing_temp", 80, "degC", "design", "above the 70 °C loop it dumps into: the chiller pumps heat uphill")
+assert T_ev < T_in, "evaporator must be colder than the cooling-garment water"
+assert T_cd >= T_cool + 5, "condenser must be hotter than the coolant loop it rejects into"
+COP = put("chiller_cop", 1.5, "", "design", "micro vapour-compression loop lifting 12 °C -> 80 °C")
+Te, Tc = T_ev + 273.15, T_cd + 273.15
+put("chiller_cop_carnot", rd(Te / (Tc - Te)), "", "calc", "Carnot limit for T_evap 12 °C, T_cond 80 °C")
 put("chiller_second_law", rd(COP / (Te / (Tc - Te))), "", "calc", "fraction of Carnot")
 assert 0.2 < COP / (Te / (Tc - Te)) < 0.5
 P_chill = put("chiller_power", round(Q_p / COP), "W", "calc")
@@ -314,10 +322,14 @@ for fc in rad_fan_xz:                                       # the outline is con
 assert math.dist(*rad_fan_xz) >= d_fan + 0.010, "fans overlap"
 q_air = put("radiator_airflow", 45, "L/s", "design",
             "per panel: 2 fans at 6,000 rpm, ≈33 L/s each in free air, ≈22 L/s against the microchannel core")
-dT_air = put("radiator_air_rise", 25, "K", "design", "25 °C ambient in, ~50 °C out (coolant ~70 °C)")
-rad_cap = 2 * 1.18 * q_air / 1000 * 1005 * dT_air
-put("radiator_capacity", round(rad_cap), "W", "calc", "2 panels × ρ·V̇·c_p·ΔT of the air stream")
-E_pcm = put("pcm_energy", 216, "kJ", "design", "1.2 kg paraffin (melts at 58 °C, 180 kJ/kg) in the abdomen cavity")
+dT_air = put("radiator_air_rise", 25, "K", "design", "air 25 °C in -> 50 °C out at the 70 °C design point")
+assert T_amb + dT_air < T_cool, "air cannot leave hotter than the coolant that heats it"
+C_air = 2 * 1.18 * q_air / 1000 * 1005                      # W/K, both panels
+rad_cap = C_air * dT_air
+put("radiator_capacity", round(rad_cap), "W", "calc", "2 panels × ρ·V̇·c_p·ΔT of the air stream (25 °C outside air)")
+T_pcm = put("pcm_melt_temp", 70, "degC", "design", "paraffin ≈ C32: melts at the radiator design point")
+E_pcm = put("pcm_energy", 216, "kJ", "design",
+            "1.2 kg paraffin × 180 kJ/kg (conservative), insulated case in the abdomen cavity")
 rpm_fan = put("radiator_fan_rpm", 6000, "rpm", "design")
 z_fan = put("radiator_fan_blades", 11, "", "design")
 z_fs = put("radiator_fan_struts", 3, "", "design", "blade and strut counts coprime: no tonal lock-in")
@@ -359,6 +371,11 @@ put("heartbeat_heavy", round(Pf_hvy / E_pel * 60), "bpm", "calc", "heavy work: t
 put("radiator_load_mission", round(heat_avg), "W", "calc")
 put("radiator_load_heavy", round(heat_hvy), "W", "calc")
 assert heat_avg <= rad_cap, "radiators cannot carry the mission average"
+eps_air = dT_air / (T_cool - T_amb)                       # air-side effectiveness at the design point
+T_cool_avg = T_amb + heat_avg / C_air / eps_air           # loop temperature at mission average, fans at full speed
+put("coolant_temp_mission", rd(T_cool_avg, 1), "degC", "calc", "same radiator effectiveness at the lower mission load")
+assert T_cool_avg < T_pcm - 5, "wax must stay solid at mission average (it is the reserve for heavy work)"
+assert T_pcm <= T_cool, "wax must melt before the loop passes the radiator design point"
 put("radiator_deficit_heavy", round(heat_hvy - rad_cap), "W", "calc", "heat the wax must absorb during heavy work")
 t_burst = E_pcm * 1000 / max(heat_hvy - rad_cap, 1)
 put("heavy_work_burst", rd(t_burst / 60, 1), "min", "calc", "melting wax absorbs the heat the radiators cannot")
@@ -659,12 +676,18 @@ S["palette_3d"] = [
     {"name": "graphite", "finish": "CFRP, clear-coat, twill weave", "share": [0.40, 0.50], "where": "armor faces (resting surfaces)"},
     {"name": "gunmetal", "finish": "bead-blasted Ti-6Al-4V", "share": [0.25, 0.32], "where": "frame, housings, impact panels, helmet shell (the brow is part of it)"},
     {"name": "platinum", "finish": "polished Ti keel strips, hard-chrome rods", "share": [0.06, 0.10], "where": "form lines, sternum keel, sliding parts"},
-    {"name": "ti_gold", "finish": f"anodized Ti {V_au} V ({round(V_au * k_an)} nm)", "share": [0.08, 0.11], "where": "rotation rings = joint axes"},
+    {"name": "ti_gold", "finish": f"anodized Ti {V_au} V ({round(V_au * k_an)} nm)", "share": [0.09, 0.12], "where": "rotation rings = joint axes, atlas ring, trunk arc rail"},
     {"name": "ti_bronze", "finish": f"anodized Ti {V_br} V ({round(V_br * k_an)} nm)", "share": [0.01, 0.03], "where": "radiator louvers on the back"},
-    {"name": "gold", "finish": "gold plating, gold IR film, MLI foil", "share": [0.01, 0.02], "where": "contacts, visor tint, core insulation"},
+    {"name": "gold", "finish": "gold plating, gold IR film", "share": [0.0, 0.005],
+     "where": "contacts, visor tint (point accents; the gold MLI around the core is inside and not counted)"},
 ]
 put("gold_family_share", [0.10, 0.15], "", "design", "ti_gold + ti_bronze + gold, measured on the model")
 put("red_share", 0.0, "", "design", "no red anywhere on the suit")
+_lo = sum(p_["share"][0] for p_ in S["palette_3d"])
+_hi = sum(p_["share"][1] for p_ in S["palette_3d"])
+assert _lo <= 1.0 <= _hi, "palette share ranges cannot add up to 100 %"
+_gf = [sum(p_["share"][i] for p_ in S["palette_3d"] if p_["name"] in ("ti_gold", "ti_bronze", "gold")) for i in (0, 1)]
+assert _gf[0] >= 0.10 - 1e-9 and _gf[1] <= 0.155, f"gold-family sub-ranges {_gf} do not fit 10–15 %"
 
 # ================================================================ sensors & HUD
 put("camera_count", 4, "", "design", "2 per eye: forward stereo + temporal wide (raptors have two foveae per eye)")
@@ -730,7 +753,7 @@ S["clash_checks_static"] = {k: ("CLASH" if v_ else "clear") for k, v_ in checks.
 assert not any(checks.values()), S["clash_checks_static"]
 cell = {
     "platform": {"d": 1.40, "height": 0.12, "note": "turntable positioner, top at z = 0"},
-    "gantry": {"post_x": 1.60, "post_y": 0.30, "beam_z": 3.00, "note": "Z-hoist lowers the core module and the helmet"},
+    "gantry": {"post_x": 1.60, "post_y": 0.30, "beam_z": 3.00, "note": "Z-hoist lowers the helmet parts from above; the KEEL CORE never leaves the suit"},
     "arms": [{"base": [sx * 1.05, y_, 0.0], "reach": 1.65} for y_ in (-0.55, 0.75) for sx in (1, -1)],
     "racks": {"x": 2.10, "y": [-1.0, 1.0], "depth": 0.60, "height": 2.0, "note": "armor panels in foam fixtures"},
     "cradle": {"post_y": 0.62, "height": 1.60, "clamp_z": 1.45, "note": "holds the empty suit at the back frame"},

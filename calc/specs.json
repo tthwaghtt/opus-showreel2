@@ -565,32 +565,56 @@
   "tag": "design",
   "note": "tube OD, total length — quilted into the flight suit"
  },
+ "ambient_design_temp": {
+  "v": 25,
+  "unit": "degC",
+  "tag": "design",
+  "note": "radiator capacity is quoted for 25 °C outside air"
+ },
+ "coolant_design_temp": {
+  "v": 70,
+  "unit": "degC",
+  "tag": "design",
+  "note": "shared loop at the radiator design point (heavy work); the melting wax holds it here"
+ },
+ "chiller_evaporating_temp": {
+  "v": 12,
+  "unit": "degC",
+  "tag": "design",
+  "note": "below the 18 °C garment inlet"
+ },
+ "chiller_condensing_temp": {
+  "v": 80,
+  "unit": "degC",
+  "tag": "design",
+  "note": "above the 70 °C loop it dumps into: the chiller pumps heat uphill"
+ },
  "chiller_cop": {
-  "v": 2.5,
+  "v": 1.5,
   "unit": "",
   "tag": "design",
-  "note": "micro vapour-compression loop"
+  "note": "micro vapour-compression loop lifting 12 °C -> 80 °C"
  },
  "chiller_cop_carnot": {
-  "v": 7.5,
+  "v": 4.19,
   "unit": "",
   "tag": "calc",
-  "note": "T_evap 12 °C, T_cond 50 °C"
+  "note": "Carnot limit for T_evap 12 °C, T_cond 80 °C"
  },
  "chiller_second_law": {
-  "v": 0.33,
+  "v": 0.36,
   "unit": "",
   "tag": "calc",
   "note": "fraction of Carnot"
  },
  "chiller_power": {
-  "v": 160,
+  "v": 267,
   "unit": "W",
   "tag": "calc",
   "note": ""
  },
  "condenser_heat": {
-  "v": 560,
+  "v": 667,
   "unit": "W",
   "tag": "calc",
   "note": ""
@@ -651,19 +675,25 @@
   "v": 25,
   "unit": "K",
   "tag": "design",
-  "note": "25 °C ambient in, ~50 °C out (coolant ~70 °C)"
+  "note": "air 25 °C in -> 50 °C out at the 70 °C design point"
  },
  "radiator_capacity": {
   "v": 2668,
   "unit": "W",
   "tag": "calc",
-  "note": "2 panels × ρ·V̇·c_p·ΔT of the air stream"
+  "note": "2 panels × ρ·V̇·c_p·ΔT of the air stream (25 °C outside air)"
+ },
+ "pcm_melt_temp": {
+  "v": 70,
+  "unit": "degC",
+  "tag": "design",
+  "note": "paraffin ≈ C32: melts at the radiator design point"
  },
  "pcm_energy": {
   "v": 216,
   "unit": "kJ",
   "tag": "design",
-  "note": "1.2 kg paraffin (melts at 58 °C, 180 kJ/kg) in the abdomen cavity"
+  "note": "1.2 kg paraffin × 180 kJ/kg (conservative), insulated case in the abdomen cavity"
  },
  "radiator_fan_rpm": {
   "v": 6000,
@@ -725,19 +755,19 @@
   "note": "radiator fans + coolant pump"
  },
  "power_continuous_loads": {
-  "v": 490,
+  "v": 597,
   "unit": "W",
   "tag": "calc",
   "note": "chiller + HUD + cryocooler + fans/pumps"
  },
  "power_mission_average": {
-  "v": 1062,
+  "v": 1169,
   "unit": "W",
   "tag": "calc",
   "note": "on the 270 V bus"
  },
  "power_heavy": {
-  "v": 2490,
+  "v": 2597,
   "unit": "W",
   "tag": "calc",
   "note": "heavy work on the 270 V bus"
@@ -749,13 +779,13 @@
   "note": "rated core output after conditioning"
  },
  "core_fusion_power_mission": {
-  "v": 1784,
+  "v": 1964,
   "unit": "W",
   "tag": "calc",
   "note": ""
  },
  "heartbeat_mission": {
-  "v": 26,
+  "v": 28,
   "unit": "bpm",
   "tag": "calc",
   "note": "calm walking pace"
@@ -773,49 +803,55 @@
   "note": "a sleeping pulse"
  },
  "heartbeat_heavy": {
-  "v": 60,
+  "v": 63,
   "unit": "bpm",
   "tag": "calc",
   "note": "heavy work: the core's pulse rises"
  },
  "radiator_load_mission": {
-  "v": 1870,
+  "v": 2049,
   "unit": "W",
   "tag": "calc",
   "note": ""
  },
  "radiator_load_heavy": {
-  "v": 3483,
+  "v": 3663,
   "unit": "W",
   "tag": "calc",
   "note": ""
  },
+ "coolant_temp_mission": {
+  "v": 59.6,
+  "unit": "degC",
+  "tag": "calc",
+  "note": "same radiator effectiveness at the lower mission load"
+ },
  "radiator_deficit_heavy": {
-  "v": 815,
+  "v": 995,
   "unit": "W",
   "tag": "calc",
   "note": "heat the wax must absorb during heavy work"
  },
  "heavy_work_burst": {
-  "v": 4.4,
+  "v": 3.6,
   "unit": "min",
   "tag": "calc",
   "note": "melting wax absorbs the heat the radiators cannot"
  },
  "pcm_recharge": {
-  "v": 4.5,
+  "v": 5.8,
   "unit": "min",
   "tag": "calc",
   "note": "wax re-freezes at mission average"
  },
  "fuel_life_mission": {
-  "v": 328,
+  "v": 298,
   "unit": "days",
   "tag": "calc",
   "note": "continuous at mission-average power"
  },
  "fuel_use_mission": {
-  "v": 0.127,
+  "v": 0.14,
   "unit": "mg/h",
   "tag": "calc",
   "note": ""
@@ -1955,10 +1991,10 @@
    "name": "ti_gold",
    "finish": "anodized Ti 62 V (124 nm)",
    "share": [
-    0.08,
-    0.11
+    0.09,
+    0.12
    ],
-   "where": "rotation rings = joint axes"
+   "where": "rotation rings = joint axes, atlas ring, trunk arc rail"
   },
   {
    "name": "ti_bronze",
@@ -1971,12 +2007,12 @@
   },
   {
    "name": "gold",
-   "finish": "gold plating, gold IR film, MLI foil",
+   "finish": "gold plating, gold IR film",
    "share": [
-    0.01,
-    0.02
+    0.0,
+    0.005
    ],
-   "where": "contacts, visor tint, core insulation"
+   "where": "contacts, visor tint (point accents; the gold MLI around the core is inside and not counted)"
   }
  ],
  "gold_family_share": {
@@ -2487,7 +2523,7 @@
     "post_x": 1.6,
     "post_y": 0.3,
     "beam_z": 3.0,
-    "note": "Z-hoist lowers the core module and the helmet"
+    "note": "Z-hoist lowers the helmet parts from above; the KEEL CORE never leaves the suit"
    },
    "arms": [
     {
@@ -2549,7 +2585,7 @@
   "drop_height": 1.5,
   "lift_mass": 90,
   "core_power": 3000,
-  "fuel_life_days": 328,
+  "fuel_life_days": 298,
   "heartbeat_rated": 69
  }
 }

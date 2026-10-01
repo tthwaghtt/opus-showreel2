@@ -5,7 +5,8 @@ DOHA's scroll-driven engineering showreel: an ORIGINAL full-body armored powered
 Concept v2.1 (2026-09-30 16:30): the pilot stands inside a dense internal mechanical layer; 120+ separate armor panels latch onto it.
 No flight. Power = **KEEL CORE**, a fictional aneutronic (p-¹¹B) fusion core standing vertically inside a sternum "keel" in the chest.
 It is the ONE assumption (ASSUMPTION A-01, calc tag `fiction`); everything else is computed from physics.
-Heat, not fuel, sets the limits (two thin back radiators + a wax heat buffer).
+Heat, not fuel, sets the limits (two thin back radiators + a wax heat buffer; heat only flows downhill, so the
+pilot's chiller condenses at 80 °C above the 70 °C shared loop — the calc sheet checks the temperature order).
 
 ## Source of truth (read in this order)
 1. `PROGRESS.md` — what is done, what is next, open issues. **Update it at every milestone.**
@@ -33,7 +34,8 @@ Heat, not fuel, sets the limits (two thin back radiators + a wax heat buffer).
   no external pouches/tanks/pipes/antennas.
 - Chest: vertical polished-Ti keel ridge between the pectoral plates; the KEEL CORE (vertical spindle Ø76 × 250 mm) sits inside.
   Visible only as ONE faint violet-white line (#B7A6FF) in a thin slit, pulsing at the computed heartbeat
-  (standby 7 / walk 26 / heavy 60 / rated 69 BPM). The keel opens in two halves on SHEET 08. Fiction values carry an "A-01" mark on the page.
+  (standby 7 / walk 28 / heavy 63 / rated 69 BPM). The keel opens in two halves on SHEET 08. Fiction values carry an "A-01" mark on the page.
+  The core never leaves the suit: during suit-up its front chest frame swings open like a door, shield always toward the pilot.
 - Palette (3D materials): graphite CFRP, gunmetal titanium, platinum-tone polish, anodized titanium-gold, titanium-bronze, gold.
   Gold family 10–15% of the visible exterior (measured from the model), red 0%. Gold comes from physics (Ti anodizing thin film).
 - Helmet: kestrel eyes but NOT round — narrow, angular apertures, upper edge 15° (review range 12–18°; the ~27° sketch looked angry
